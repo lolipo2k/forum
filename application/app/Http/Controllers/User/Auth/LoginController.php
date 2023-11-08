@@ -185,9 +185,8 @@ class LoginController extends Controller
             $check = $check::where('email', $info->email)->first();
 
             if (isset($check->id)) {
-                $user = new User();
-                $user->password = Hash::make($password);
-                $user->save();
+                $check->password = Hash::make($password);
+                $check->save();
                 return true;
             };
 
