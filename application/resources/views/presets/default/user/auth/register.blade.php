@@ -180,8 +180,7 @@ $credentials = $general->socialite_credentials;
         @endif
 
         $('.checkUser').on('focusout', function(e) {
-            var url = '{{ route('
-            user.checkUser ') }}';
+            var url = '{{ route('user.checkUser') }}';
             var value = $(this).val();
             var token = '{{ csrf_token() }}';
             if ($(this).attr('name') == 'mobile') {
