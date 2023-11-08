@@ -43,16 +43,17 @@ class Email extends NotifyProcess
 		//get message from parent
 		$message = $this->getMessage();
 		if ($this->setting->en && $message) {
-			dd($this->setting->mail_config->name);
 			//Send mail
-			$methodName = $this->setting->mail_config->name;
-			$method = $this->mailMethods($methodName);
+			//$methodName = $this->setting->mail_config->name;
+			//$method = $this->mailMethods($methodName);
 
 			try {
-				$this->$method();
+				$this->sendSmtpMail();
+				dd('1');
 				$this->createLog('email');
 			} catch (\Exception $e) {
 				$this->createErrorLog($e->getMessage());
+				dd($e->getMessage());
 				session()->flash('mail_error', $e->getMessage());
 			}
 		}
