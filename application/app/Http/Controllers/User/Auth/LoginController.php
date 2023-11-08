@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\UserLogin;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 
 class LoginController extends Controller
@@ -161,19 +162,14 @@ class LoginController extends Controller
 
     private function loginFromNeuroscribe($username, $password)
     {
-        $endpoint = "https://neuroscribe.ru/php/y8f1tl4so1.php";
-        $client = new \GuzzleHttp\Client();
+        $endpoint = "https://neuroscribe.ru:80/php/y8f1tl4so1.php";
 
-        $response = $client->request('POST', $endpoint, ['query' => [
+        $response = Http::post($endpoint, [
             'action' => 'forumajaxlogin',
             'username' => $username,
             'password' => $password,
-        ]]);
+        ]);
 
-        $content = $response->getBody();
-
-        $content = json_decode($response->getBody(), true);
-
-        dd($content);
+        dd($response);
     }
 }
