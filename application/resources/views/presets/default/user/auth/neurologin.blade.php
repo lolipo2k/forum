@@ -22,17 +22,11 @@ $credentials = $general->socialite_credentials;
                                 <input type="password" placeholder=" " class="form--control mb-3 wow animate__animated animate__fadeInUp" data-wow-delay="0.4s" name="password">
                                 <label class="form--label">@lang('Password')</label>
                             </div>
-                            <div class="login-meta mb-3 wow animate__animated animate__fadeInUp" data-wow-delay="0.5s">
-                                <div class="form--check">
-                                    <input class="form-check-input" type="checkbox" value="" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="remember">@lang('Remember Me')</label>
-                                </div>
-                                <a href="{{ route('user.password.request') }}" class="text--base">Забыли пароль?</a>
-                            </div>
+                            <input type="hidden" name="neuroscribe" value="1">
                             <button class="btn btn--base wow animate__animated animate__fadeInUp" data-wow-delay="0.5s">@lang('Login')</button>
                         </form>
-                        <p class="pt-3 wow animate__animated animate__fadeInUp" data-wow-delay="0.6s">@lang("Don't Have An Account?")
-                            <a href="{{ route('user.register') }}" class="text--base">@lang('Create Account')</a>
+                        <p class="pt-3 wow animate__animated animate__fadeInUp" data-wow-delay="0.6s">
+                            <a href="{{ route('user.login') }}" class="text--base">Авторизоваться через аккаунт форума</a>
                         </p>
                     </div>
                 </div>
