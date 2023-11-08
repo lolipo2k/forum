@@ -101,6 +101,7 @@ class Email extends NotifyProcess
 		//  }else{
 		//		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 		//  }
+		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 		$mail->Port       = $config->port;
 		$mail->CharSet = 'UTF-8';
 		//Recipients
