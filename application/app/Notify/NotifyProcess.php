@@ -163,7 +163,6 @@ class NotifyProcess
         $body = $this->body;
         $user = $this->user;
         $globalTemplate = $this->globalTemplate;
-        dd('1');
         //finding the notification template
         $template = NotificationTemplate::where('act', $this->templateName)->where($this->statusField, 1)->first();
         $this->template = $template;
@@ -194,7 +193,7 @@ class NotifyProcess
 
 
         $this->finalMessage = $message;
-
+        dd($message);
         //return the final message
         return $message;
     }
