@@ -1,9 +1,9 @@
 {
     "Dashboard": "Dashboardd",
     "Username": "Usernamee",
-    "Password": "Password",
+    "Password": "Пароль",
     "Remember": "Remember",
-    "Forgot password?": "Forgot password?",
+    "Forgot password?": "Забыли пароль?",
     "Sign in": "Sign in",
     "Verification": "Verification",
     "Please enter the verification code": "Please enter the verification code",
@@ -522,5 +522,8 @@
     "Popular Topics": "Популярные темы",
     "Posted by": "Опубликовано",
     "Answers": "Ответы",
-    "views": "Просмотры"
+    "views": "Просмотры",
+    "Welcome Back !": "Войти в свой аккаунт",
+    "Don't Have An Account?": "Нету аккаунта?",
+    "Create Account": "Создать аккаунт"
 }

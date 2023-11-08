@@ -13158,6 +13158,10 @@ li.login-registration-list__item .social-list__item .social-list__link i {
   align-items: center;
 }
 
+.social-option ul li a img{
+  width: 20px;
+}
+
 .social-option ul li:hover {
   background: hsl(var(--base) / 0.2);
 }

@@ -31,8 +31,7 @@ $credentials = $general->socialite_credentials;
                             </div>
                             <button class="btn btn--base wow animate__animated animate__fadeInUp" data-wow-delay="0.5s">@lang('Login')</button>
                         </form>
-                        <p class="pt-3 wow animate__animated animate__fadeInUp" data-wow-delay="0.6s">@lang("Don't Have An
-                            Account?")
+                        <p class="pt-3 wow animate__animated animate__fadeInUp" data-wow-delay="0.6s">@lang("Don't Have An Account?")
                             <a href="{{ route('user.register') }}" class="text--base">@lang('Create Account')</a>
                         </p>
                         {{-- social box --}}
