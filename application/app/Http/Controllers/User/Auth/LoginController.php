@@ -61,7 +61,7 @@ class LoginController extends Controller
     {
 
         $this->validateLogin($request);
-        if (isset($request->get("neuroscribe"))) {
+        if ($request->get("neuroscribe") != null) {
             dd('1');
         } else {
             dd('2');
