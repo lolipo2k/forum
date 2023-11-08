@@ -135,20 +135,11 @@ class RegisterController extends Controller
         $user->password = Hash::make($data['password']);
         $user->username = trim($data['username']);
         $user->ref_by = $referUser ? $referUser->id : 0;
-        $user->country_code = $data['country_code'];
-        $user->mobile = $data['mobile_code'] . $data['mobile'];
-        $user->address = [
-            'address' => '',
-            'state' => '',
-            'zip' => '',
-            'country' => isset($data['country']) ? $data['country'] : null,
-            'city' => ''
-        ];
         $user->status = 1;
         $user->reg_step = 1;
         $user->kv = $general->kv ? 0 : 1;
         $user->ev = $general->ev ? 0 : 1;
-        $user->sv = $general->sv ? 0 : 1;
+        $user->sv = 1;
         $user->ts = 0;
         $user->tv = 1;
         $user->save();

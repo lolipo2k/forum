@@ -59,7 +59,7 @@ $credentials = $general->socialite_credentials;
                             <div class="row wow animate__animated animate__fadeInUp" data-wow-delay="0.7s">
                                 <div class="col-xxl-6 col-lg-6 col-md-6">
                                     <div class="form-group">
-                                        <input class="form--control mb-3" placeholder="" name="password">
+                                        <input class="form--control mb-3" placeholder="" name="password" type="password">
                                         <label class="form--label">@lang('Password')</label>
                                         @if ($general->secure_password)
                                         <div class="input-popup">
@@ -74,7 +74,7 @@ $credentials = $general->socialite_credentials;
                                 </div>
                                 <div class="col-xxl-6 col-lg-6 col-md-6 mb-3">
                                     <div class="form-group">
-                                        <input class="form--control mb-3" placeholder="" name="password_confirmation">
+                                        <input class="form--control mb-3" placeholder="" name="password_confirmation" type="password">
                                         <label class="form--label">@lang('Re-Enter Password')</label>
                                     </div>
                                 </div>
