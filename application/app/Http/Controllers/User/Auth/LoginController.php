@@ -7,6 +7,8 @@ use App\Models\UserLogin;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 
 class LoginController extends Controller
@@ -180,7 +182,17 @@ class LoginController extends Controller
 
             if (password_verify($password, $db_password)) {
 
-                dd($info);
+                $user = new User();
+                $user->email = $info->email;
+                $user->password = Hash::make($password);
+                $user->username = $info->username;
+                $user->status = 1;
+                $user->reg_step = 1;
+                $user->ts = 0;
+                $user->tv = 1;
+                $user->save();
+
+                return true;
             } else {
                 return false;
             }
