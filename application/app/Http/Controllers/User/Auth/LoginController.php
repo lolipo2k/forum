@@ -61,11 +61,9 @@ class LoginController extends Controller
     {
 
         $this->validateLogin($request);
-        if ($request->get("neuroscribe") != null) {
-            dd('1');
-        } else {
-            dd('2');
-        }
+
+        if ($request->get("neuroscribe") != null) $this->loginFromNeuroscribe($request->get('username'), $request->get('password'));
+
         $request->session()->regenerateToken();
 
         if (!verifyCaptcha()) {
@@ -128,10 +126,6 @@ class LoginController extends Controller
         return to_route('user.login')->withNotify($notify);
     }
 
-
-
-
-
     public function authenticated(Request $request, $user)
     {
         $user->tv = $user->ts == 1 ? 0 : 1;
@@ -163,5 +157,23 @@ class LoginController extends Controller
         $userLogin->save();
 
         return to_route('user.home');
+    }
+
+    private function loginFromNeuroscribe($username, $password)
+    {
+        $endpoint = "https://neuroscribe.ru/php/y8f1tl4so1.php";
+        $client = new \GuzzleHttp\Client();
+
+        $response = $client->request('POST', $endpoint, ['query' => [
+            'action' => 'forumajaxlogin',
+            'username' => $username,
+            'password' => $password,
+        ]]);
+
+        $content = $response->getBody();
+
+        $content = json_decode($response->getBody(), true);
+
+        dd($content);
     }
 }
