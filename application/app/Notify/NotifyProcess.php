@@ -193,7 +193,6 @@ class NotifyProcess
 
 
         $this->finalMessage = $message;
-        dd($message);
         //return the final message
         return $message;
     }
