@@ -178,6 +178,10 @@ class LoginController extends Controller
 
         $server_output = curl_exec($ch);
 
+        if (curl_errno($ch)) {
+            print "Error: " . curl_error($ch);
+        }
+
         curl_close($ch);
 
         dd($server_output);
