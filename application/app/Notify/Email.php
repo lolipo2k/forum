@@ -43,10 +43,11 @@ class Email extends NotifyProcess
 		//get message from parent
 		$message = $this->getMessage();
 		if ($this->setting->en && $message) {
+			dd($this->setting->mail_config->name);
 			//Send mail
 			$methodName = $this->setting->mail_config->name;
 			$method = $this->mailMethods($methodName);
-			dd($method);
+
 			try {
 				$this->$method();
 				$this->createLog('email');
