@@ -40,9 +40,12 @@ class Email extends NotifyProcess
 	 */
 	public function send()
 	{
-		dd('1');
 		//get message from parent
 		$message = $this->getMessage();
+		print_r($message);
+		echo '<br>1<br>';
+		print_r($this->setting->en);
+		dd('1');
 		if ($this->setting->en && $message) {
 			//Send mail
 			$methodName = $this->setting->mail_config->name;
