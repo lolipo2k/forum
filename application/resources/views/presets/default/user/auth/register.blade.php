@@ -165,7 +165,7 @@ $credentials = $general->socialite_credentials;
         $('input[name=country_code]').val($('select[name=country] :selected').data('code'));
         $('.mobile-code').text('+' + $('select[name=country] :selected').data('mobile_code'));
 
-        @if($general - > secure_password)
+        @if($general->secure_password)
         $('input[name=password]').on('input', function() {
             secure_password($(this));
         });
