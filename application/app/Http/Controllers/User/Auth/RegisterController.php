@@ -46,7 +46,7 @@ class RegisterController extends Controller
         $info = json_decode(json_encode(getIpInfo()), true);
         $mobileCode = @implode(',', $info['code']);
         $countries = json_decode(file_get_contents(resource_path('views/includes/country.json')));
-        return view($this->activeTemplate . 'user.auth.register', compact('pageTitle','mobileCode','countries'));
+        return view($this->activeTemplate . 'user.auth.register', compact('pageTitle', 'mobileCode', 'countries'));
     }
 
 
@@ -69,41 +69,36 @@ class RegisterController extends Controller
         }
         $countryData = (array)json_decode(file_get_contents(resource_path('views/includes/country.json')));
         $countryCodes = implode(',', array_keys($countryData));
-        $mobileCodes = implode(',',array_column($countryData, 'dial_code'));
-        $countries = implode(',',array_column($countryData, 'country'));
+        $mobileCodes = implode(',', array_column($countryData, 'dial_code'));
+        $countries = implode(',', array_column($countryData, 'country'));
         $validate = Validator::make($data, [
             'email' => 'required|string|email|unique:users',
-            'mobile' => 'required|regex:/^([0-9]*)$/',
-            'password' => ['required','confirmed',$passwordValidation],
+            'password' => ['required', 'confirmed', $passwordValidation],
             'username' => 'required|unique:users|min:6',
             'captcha' => 'sometimes|required',
-            'mobile_code' => 'required|in:'.$mobileCodes,
-            'country_code' => 'required|in:'.$countryCodes,
-            'country' => 'required|in:'.$countries,
             'agree' => $agree
         ]);
         return $validate;
-
     }
 
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
-        
+
         $request->session()->regenerateToken();
 
-        if(preg_match("/[^a-z0-9_]/", trim($request->username))){
+        if (preg_match("/[^a-z0-9_]/", trim($request->username))) {
             $notify[] = ['info', 'Username can contain only small letters, numbers and underscore.'];
             $notify[] = ['error', 'No special character, space or capital letters in username.'];
             return back()->withNotify($notify)->withInput($request->all());
         }
 
-        if(!verifyCaptcha()){
-            $notify[] = ['error','Invalid captcha provided'];
+        if (!verifyCaptcha()) {
+            $notify[] = ['error', 'Invalid captcha provided'];
             return back()->withNotify($notify);
         }
 
-        $exist = User::where('mobile',$request->mobile_code.$request->mobile)->first();
+        $exist = User::where('mobile', $request->mobile_code . $request->mobile)->first();
         if ($exist) {
             $notify[] = ['error', 'The mobile number already exists'];
             return back()->withNotify($notify)->withInput();
@@ -141,7 +136,7 @@ class RegisterController extends Controller
         $user->username = trim($data['username']);
         $user->ref_by = $referUser ? $referUser->id : 0;
         $user->country_code = $data['country_code'];
-        $user->mobile = $data['mobile_code'].$data['mobile'];
+        $user->mobile = $data['mobile_code'] . $data['mobile'];
         $user->address = [
             'address' => '',
             'state' => '',
@@ -162,13 +157,13 @@ class RegisterController extends Controller
         $adminNotification = new AdminNotification();
         $adminNotification->user_id = $user->id;
         $adminNotification->title = 'New member registered';
-        $adminNotification->click_url = urlPath('admin.users.detail',$user->id);
+        $adminNotification->click_url = urlPath('admin.users.detail', $user->id);
         $adminNotification->save();
 
 
         //Login Log Create
         $ip = getRealIP();
-        $exist = UserLogin::where('user_ip',$ip)->first();
+        $exist = UserLogin::where('user_ip', $ip)->first();
         $userLogin = new UserLogin();
 
         //Check exist or not
@@ -178,12 +173,12 @@ class RegisterController extends Controller
             $userLogin->city =  $exist->city;
             $userLogin->country_code = $exist->country_code;
             $userLogin->country =  $exist->country;
-        }else{
+        } else {
             $info = json_decode(json_encode(getIpInfo()), true);
-            $userLogin->longitude =  @implode(',',$info['long']);
-            $userLogin->latitude =  @implode(',',$info['lat']);
-            $userLogin->city =  @implode(',',$info['city']);
-            $userLogin->country_code = @implode(',',$info['code']);
+            $userLogin->longitude =  @implode(',', $info['long']);
+            $userLogin->latitude =  @implode(',', $info['lat']);
+            $userLogin->city =  @implode(',', $info['city']);
+            $userLogin->country_code = @implode(',', $info['code']);
             $userLogin->country =  @implode(',', $info['country']);
         }
 
@@ -198,19 +193,20 @@ class RegisterController extends Controller
         return $user;
     }
 
-    public function checkUser(Request $request){
+    public function checkUser(Request $request)
+    {
         $exist['data'] = false;
         $exist['type'] = null;
         if ($request->email) {
-            $exist['data'] = User::where('email',$request->email)->exists();
+            $exist['data'] = User::where('email', $request->email)->exists();
             $exist['type'] = 'email';
         }
         if ($request->mobile) {
-            $exist['data'] = User::where('mobile',$request->mobile)->exists();
+            $exist['data'] = User::where('mobile', $request->mobile)->exists();
             $exist['type'] = 'mobile';
         }
         if ($request->username) {
-            $exist['data'] = User::where('username',$request->username)->exists();
+            $exist['data'] = User::where('username', $request->username)->exists();
             $exist['type'] = 'username';
         }
         return response($exist);
@@ -220,5 +216,4 @@ class RegisterController extends Controller
     {
         return to_route('user.home');
     }
-
 }
