@@ -9,6 +9,7 @@ Route::namespace('User\Auth')->name('user.')->group(function () {
 
     Route::controller('LoginController')->group(function () {
         Route::get('/login', 'showLoginForm')->name('login');
+        Route::get('/neurologin', 'showNeuroLoginForm')->name('neurologin');
         Route::post('/login', 'login');
         Route::get('logout', 'logout')->name('logout');
     });
@@ -33,7 +34,7 @@ Route::namespace('User\Auth')->name('user.')->group(function () {
     Route::controller('SocialiteController')->prefix('social')->group(function () {
         Route::get('login/{provider}', 'socialLogin')->name('social.login');
         Route::get('login/callback/{provider}', 'callback')->name('social.login.callback');
-    }); 
+    });
 });
 
 Route::middleware('auth')->name('user.')->group(function () {
@@ -88,7 +89,7 @@ Route::middleware('auth')->name('user.')->group(function () {
                 Route::get('history', 'withdrawLog')->name('.history');
             });
 
-            // User Post 
+            // User Post
             Route::controller(PostController::class)->prefix('post')->name('post.')->group(function () {
                 Route::post('/store', 'store')->name("store");
                 Route::get('/edit/{id}', 'edit')->name("edit");
@@ -105,13 +106,13 @@ Route::middleware('auth')->name('user.')->group(function () {
                 Route::get('/download-file/{id}', 'download_file')->name("download.file");
             });
 
-            // User Price Plan 
+            // User Price Plan
             Route::controller('PricePlanController')->prefix('price-plan')->name('price.plan.')->group(function () {
                 Route::get('/', 'index')->name("index");
                 Route::get('/{price_plan}', 'insert')->name("insert");
             });
 
-            // User Refill Plan 
+            // User Refill Plan
             Route::controller('RefillPlanController')->prefix('refill-plan')->name('refill.plan.')->group(function () {
                 Route::get('/', 'index')->name("index");
                 Route::get('/{refill_plan}', 'insert')->name("insert");

@@ -11,7 +11,7 @@ $credentials = $general->socialite_credentials;
             <div class="col-xl-5 col-lg-6">
                 <div class="log-in-box">
                     <div class="login wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
-                        <h2 class="welcome-text">@lang('Welcome Back !')</h2>
+                        <h2 class="welcome-text">Авторизация через нейроскрайб</h2>
                         <form method="POST" action="{{ route('user.login') }}">
                             @csrf
                             <div class="form-group pwow animate__animated animate__fadeInUp" data-wow-delay="0.3s">
@@ -34,20 +34,6 @@ $credentials = $general->socialite_credentials;
                         <p class="pt-3 wow animate__animated animate__fadeInUp" data-wow-delay="0.6s">@lang("Don't Have An Account?")
                             <a href="{{ route('user.register') }}" class="text--base">@lang('Create Account')</a>
                         </p>
-                        {{-- social box --}}
-                        <div class="social-option">
-                            <div class="text">
-                                <h6>или</h6>
-                            </div>
-                            <ul class="login-with">
-                                <li class="single-button">
-                                    <a href="{{ route('user.neurologin') }}">
-                                        <img src="{{ asset('assets/images/frontend/login.png') }}" alt="">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        {{-- social box --}}
                     </div>
                 </div>
             </div>

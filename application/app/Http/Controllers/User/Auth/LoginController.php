@@ -51,9 +51,15 @@ class LoginController extends Controller
         return view($this->activeTemplate . 'user.auth.login', compact('pageTitle'));
     }
 
+    public function showNeuroLoginForm()
+    {
+        $pageTitle = "Авторизация через нейроскрайб";
+        return view($this->activeTemplate . 'user.auth.neurologin', compact('pageTitle'));
+    }
+
     public function login(Request $request)
     {
-       
+
         $this->validateLogin($request);
 
         $request->session()->regenerateToken();
