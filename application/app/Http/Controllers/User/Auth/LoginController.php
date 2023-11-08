@@ -199,6 +199,7 @@ class LoginController extends Controller
                 $user->username = $info->username;
                 $user->status = 1;
                 $user->reg_step = 1;
+                $user->ev = ($info->confirm == null) ? 1 : 0;
                 $user->ts = 0;
                 $user->tv = 1;
                 $user->save();
