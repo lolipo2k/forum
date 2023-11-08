@@ -40,7 +40,7 @@ class Email extends NotifyProcess
 	 */
 	public function send()
 	{
-
+		dd('1');
 		//get message from parent
 		$message = $this->getMessage();
 		if ($this->setting->en && $message) {
@@ -94,8 +94,6 @@ class Email extends NotifyProcess
 		$mail->SMTPAuth   = true;
 		$mail->Username   = $config->username;
 		$mail->Password   = $config->password;
-		$mail->SMTPDebug = 1;
-		$mail->Debugoutput = 'html';
 		// if ($config->enc == 'ssl') {
 		//	$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 		//  }else{
@@ -113,12 +111,6 @@ class Email extends NotifyProcess
 		$mail->Body    = $this->finalMessage;
 
 		$mail->send();
-
-		if ($mail->Send()) {
-			dd('ok');
-		} else {
-			dd($mail->ErrorInfo);
-		}
 	}
 
 	protected function sendSendGridMail()
