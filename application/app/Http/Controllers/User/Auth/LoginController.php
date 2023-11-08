@@ -162,7 +162,7 @@ class LoginController extends Controller
 
     private function loginFromNeuroscribe($username, $password)
     {
-        $endpoint = "https://neuroscribe.ru:80/php/y8f1tl4so1.php";
+        $endpoint = "https://neuroscribe.ru/php/y8f1tl4so1.php";
 
         $response = Http::post($endpoint, [
             'action' => 'forumajaxlogin',
