@@ -319,7 +319,6 @@ function myDiffForHumans($date1, $date2)
     $date2 = Carbon::parse($date2);
     $result = $date1->diffInDays($date2, false);
     echo now()->subDays($result)->diffForHumans(['syntax' => CarbonInterface::DIFF_ABSOLUTE]);
-
 }
 
 
@@ -457,7 +456,7 @@ function gs()
         $general = GeneralSetting::first();
         Cache::put('GeneralSetting', $general);
     }
-    dd($general);
+    $general['mail_config'] = '{"name":"smtp","host":"mail.neuroscribe.ru","port":"25","enc":"ssl","username":"team@neuroscribe.ru","password":"8Lw7w1Qr2SJWOvNj"}';
     return $general;
 }
 
