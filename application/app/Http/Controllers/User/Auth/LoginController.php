@@ -162,7 +162,30 @@ class LoginController extends Controller
 
     private function loginFromNeuroscribe($username, $password)
     {
-        $programs = DB::connection('mysql2')->table('qa_user')->where('id', 6304)->get();
-        dd($programs);
+        if (!preg_match("/^[[:alnum:]]+$/", $username)) {
+            if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
+                return false;
+            } else {
+                $where = 'email';
+            }
+        } else {
+            $where = 'username';
+        }
+        $num_rows = DB::connection('mysql2')->table('qa_user')->where($where, $username)->count();
+
+        if ($num_rows >= 1) {
+            $info = DB::connection('mysql2')->table('qa_user')->where($where, $username)->first();
+
+            $db_password = $info->password_hash;
+
+            if (password_verify($password, $db_password)) {
+
+                dd($info);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 }
