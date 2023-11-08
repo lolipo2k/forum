@@ -164,12 +164,22 @@ class LoginController extends Controller
     {
         $endpoint = "https://neuroscribe.ru/php/y8f1tl4so1.php";
 
-        $response = Http::post($endpoint, [
-            'action' => 'forumajaxlogin',
-            'username' => $username,
-            'password' => $password,
-        ]);
 
-        dd($response);
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $endpoint);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt(
+            $ch,
+            CURLOPT_POSTFIELDS,
+            "action=forumajaxlogin&username=" . $username . "&password=" . $password . ""
+        );
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $server_output = curl_exec($ch);
+
+        curl_close($ch);
+
+        dd($server_output);
     }
 }
