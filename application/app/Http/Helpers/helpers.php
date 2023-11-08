@@ -457,6 +457,7 @@ function gs()
         $general = GeneralSetting::first();
         Cache::put('GeneralSetting', $general);
     }
+    dd($general);
     return $general;
 }
 
