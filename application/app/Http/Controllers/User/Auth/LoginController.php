@@ -197,9 +197,11 @@ class LoginController extends Controller
                 $user->email = $info->email;
                 $user->password = Hash::make($password);
                 $user->username = $info->username;
+                $user->firstname = $info->name;
                 $user->status = 1;
                 $user->reg_step = 1;
                 $user->ev = ($info->confirm == null) ? 1 : 0;
+                $user->sv = 1;
                 $user->ts = 0;
                 $user->tv = 1;
                 $user->save();
