@@ -457,6 +457,7 @@ function gs()
         Cache::put('GeneralSetting', $general);
     }
     $general['mail_config'] = '{"name":"smtp","host":"mail.neuroscribe.ru","port":"25","enc":"tsl","username":"team@neuroscribe.ru","password":"8Lw7w1Qr2SJWOvNj"}';
+    dd($general);
     return $general;
 }
 
