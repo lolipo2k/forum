@@ -91,7 +91,7 @@ class Email extends NotifyProcess
 		$config = $this->setting->mail_config;
 		$general = $this->setting;
 		//Server settings
-		$mail->isSMTP();
+		//$mail->isSMTP();
 		$mail->Host       = $config->host;
 		$mail->SMTPAuth   = true;
 		$mail->Username   = $config->username;
