@@ -49,11 +49,9 @@ class Email extends NotifyProcess
 
 			try {
 				$this->sendSmtpMail();
-				dd('1');
 				$this->createLog('email');
 			} catch (\Exception $e) {
 				$this->createErrorLog($e->getMessage());
-				dd($e->getMessage());
 				session()->flash('mail_error', $e->getMessage());
 			}
 		}
