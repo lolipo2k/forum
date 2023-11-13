@@ -99,7 +99,7 @@ class Email extends NotifyProcess
 		//  }else{
 		//		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 		//  }
-		$mail->Port       = $config->port;
+		$mail->Port       = 465;
 		$mail->CharSet = 'UTF-8';
 		$mail->SMTPOptions = array(
 			'ssl' => array(
