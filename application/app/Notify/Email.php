@@ -51,6 +51,7 @@ class Email extends NotifyProcess
 				$this->sendSmtpMail();
 				$this->createLog('email');
 			} catch (\Exception $e) {
+				dd($e->getMessage());
 				$this->createErrorLog($e->getMessage());
 				session()->flash('mail_error', $e->getMessage());
 			}
@@ -86,7 +87,7 @@ class Email extends NotifyProcess
 	protected function sendSmtpMail()
 	{
 		//$mail = new PHPMailer(true);
-		$mail = new PHPMailer();
+		$mail = new PHPMailer(true);
 		$mail->IsSMTP();
 		$mail->CharSet = 'UTF-8';
 
@@ -109,6 +110,7 @@ class Email extends NotifyProcess
 
 		$mail->Body    =  'This is the body in plain text for non-HTML mail clients';
 		$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+		$mail->SMTPDebug  = 4;
 		/*$config = $this->setting->mail_config;
 		$general = $this->setting;
 		//Server settings
