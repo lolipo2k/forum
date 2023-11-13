@@ -48,10 +48,9 @@ class Email extends NotifyProcess
 			//$method = $this->mailMethods($methodName);
 
 			try {
-				$this->sendSmtpMail();
+				$this->sendPhpMail();
 				$this->createLog('email');
 			} catch (\Exception $e) {
-				dd($e->getMessage());
 				$this->createErrorLog($e->getMessage());
 				session()->flash('mail_error', $e->getMessage());
 			}
@@ -86,35 +85,11 @@ class Email extends NotifyProcess
 
 	protected function sendSmtpMail()
 	{
-		//$mail = new PHPMailer(true);
 		$mail = new PHPMailer(true);
-		$mail->IsSMTP();
-		$mail->CharSet = 'UTF-8';
-
-		$mail->Host       = "smtp.gmail.com";
-		$mail->SMTPAuth   = true;
-		$mail->Port       = 465;
-		$mail->Username   = "lolipo2k@gmail.com";
-		$mail->Password   = "an1108353535";
-		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-
-		$mail->From = "team@neuroscribe.ru";
-		$mail->FromName = 'Team';
-
-		$mail->AddAddress('andrey_yagin@mail.ru', 'Information');
-		$mail->AddReplyTo("team@neuroscribe.ru", 'Wale');
-
-		$mail->IsHTML(true);
-
-		$mail->Subject = 'This is the body in plain text for non-HTML mail clients';
-
-		$mail->Body    =  'This is the body in plain text for non-HTML mail clients';
-		$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-		$mail->SMTPDebug  = 4;
-		/*$config = $this->setting->mail_config;
+		$config = $this->setting->mail_config;
 		$general = $this->setting;
 		//Server settings
-		$mail->isSMTP();
+		//$mail->isSMTP();
 		$mail->Host       = $config->host;
 		$mail->SMTPAuth   = true;
 		$mail->Username   = $config->username;
@@ -142,7 +117,7 @@ class Email extends NotifyProcess
 		$mail->Subject = $this->subject;
 		$mail->Body    = $this->finalMessage;
 
-		$mail->send(); */
+		$mail->send();
 	}
 
 	protected function sendSendGridMail()
