@@ -89,7 +89,7 @@ class Email extends NotifyProcess
 		$config = $this->setting->mail_config;
 		$general = $this->setting;
 		//Server settings
-		//$mail->isSMTP();
+		$mail->isSMTP();
 		$mail->Host       = 'mail.neuroscribe.ru';
 		$mail->SMTPAuth   = true;
 		$mail->Username   = 'team@neuroscribe.ru';
