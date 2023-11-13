@@ -94,7 +94,7 @@ class Email extends NotifyProcess
 		$mail->SMTPAuth   = true;
 		$mail->Username   = 'team@neuroscribe.ru';
 		$mail->Password   = '8Lw7w1Qr2SJWOvNj';
-		$mail->SMTPSecure = 'ssl';
+		$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 		// if ($config->enc == 'ssl') {
 		//	$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 		//  }else{
