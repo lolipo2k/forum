@@ -50,7 +50,6 @@ class Email extends NotifyProcess
 			try {
 				$this->sendSmtpMail();
 				$this->createLog('email');
-				dd('1');
 			} catch (\Exception $e) {
 				$this->createErrorLog($e->getMessage());
 				session()->flash('mail_error', $e->getMessage());
@@ -95,6 +94,7 @@ class Email extends NotifyProcess
 		$mail->SMTPAuth   = true;
 		$mail->Username   = $config->username;
 		$mail->Password   = $config->password;
+		$mail->SMTPSecure = 'ssl';
 		// if ($config->enc == 'ssl') {
 		//	$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 		//  }else{
