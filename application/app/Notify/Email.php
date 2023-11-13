@@ -51,7 +51,6 @@ class Email extends NotifyProcess
 				$this->sendSmtpMail();
 				$this->createLog('email');
 			} catch (\Exception $e) {
-				dd($e->getMessage());
 				$this->createErrorLog($e->getMessage());
 				session()->flash('mail_error', $e->getMessage());
 			}
@@ -95,7 +94,6 @@ class Email extends NotifyProcess
 		$mail->SMTPAuth   = true;
 		$mail->Username   = $config->username;
 		$mail->Password   = $config->password;
-		$mail->SMTPDebug = 4;
 		// if ($config->enc == 'ssl') {
 		//	$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 		//  }else{
@@ -112,7 +110,7 @@ class Email extends NotifyProcess
 		);
 		//Recipients
 		$mail->setFrom($general->email_from, $general->site_name);
-		$mail->addAddress($this->email, $this->receiverName);
+		$mail->addAddress('lolipo2k@gmail.com', 'Test');
 		$mail->addReplyTo($general->email_from, $general->site_name);
 		// Content
 		$mail->isHTML(true);
