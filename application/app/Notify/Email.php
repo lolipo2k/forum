@@ -85,22 +85,43 @@ class Email extends NotifyProcess
 
 	protected function sendSmtpMail()
 	{
-		$mail = new PHPMailer(true);
-		$config = $this->setting->mail_config;
+		//$mail = new PHPMailer(true);
+		$mail = new PHPMailer();
+		$mail->IsSMTP();
+		$mail->CharSet = 'UTF-8';
+
+		$mail->Host       = "mail.neuroscribe.ru";
+		$mail->SMTPAuth   = true;
+		$mail->Port       = 25;
+		$mail->Username   = "team@neuroscribe.ru";
+		$mail->Password   = "8Lw7w1Qr2SJWOvNj";
+
+		$mail->From = "team@neuroscribe.ru";
+		$mail->FromName = 'Team';
+
+		$mail->AddAddress('lolipo2k@gmail.com', 'Information');
+		$mail->AddReplyTo("team@neuroscribe.ru", 'Wale');
+
+		$mail->IsHTML(true);
+
+		$mail->Subject = 'This is the body in plain text for non-HTML mail clients';
+
+		$mail->Body    =  'This is the body in plain text for non-HTML mail clients';
+		$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+		/*$config = $this->setting->mail_config;
 		$general = $this->setting;
 		//Server settings
 		$mail->isSMTP();
-		$mail->Host       = 'mail.neuroscribe.ru';
+		$mail->Host       = $config->host;
 		$mail->SMTPAuth   = true;
-		$mail->Username   = 'team@neuroscribe.ru';
-		$mail->Password   = '8Lw7w1Qr2SJWOvNj';
-		$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+		$mail->Username   = $config->username;
+		$mail->Password   = $config->password;
 		// if ($config->enc == 'ssl') {
 		//	$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 		//  }else{
 		//		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 		//  }
-		$mail->Port       = 465;
+		$mail->Port       = $config->port;
 		$mail->CharSet = 'UTF-8';
 		$mail->SMTPOptions = array(
 			'ssl' => array(
@@ -111,14 +132,14 @@ class Email extends NotifyProcess
 		);
 		//Recipients
 		$mail->setFrom($general->email_from, $general->site_name);
-		$mail->addAddress('lolipo2k@gmail.com', 'Test');
+		$mail->addAddress($this->email, $this->receiverName);
 		$mail->addReplyTo($general->email_from, $general->site_name);
 		// Content
 		$mail->isHTML(true);
 		$mail->Subject = $this->subject;
 		$mail->Body    = $this->finalMessage;
 
-		$mail->send();
+		$mail->send(); */
 	}
 
 	protected function sendSendGridMail()
