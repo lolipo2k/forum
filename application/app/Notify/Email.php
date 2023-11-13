@@ -90,16 +90,17 @@ class Email extends NotifyProcess
 		$mail->IsSMTP();
 		$mail->CharSet = 'UTF-8';
 
-		$mail->Host       = "mail.neuroscribe.ru";
+		$mail->Host       = "smtp.gmail.com";
 		$mail->SMTPAuth   = true;
-		$mail->Port       = 25;
-		$mail->Username   = "team@neuroscribe.ru";
-		$mail->Password   = "8Lw7w1Qr2SJWOvNj";
+		$mail->Port       = 465;
+		$mail->Username   = "lolipo2k@gmail.com";
+		$mail->Password   = "an1108353535";
+		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 
 		$mail->From = "team@neuroscribe.ru";
 		$mail->FromName = 'Team';
 
-		$mail->AddAddress('lolipo2k@gmail.com', 'Information');
+		$mail->AddAddress('andrey_yagin@mail.ru', 'Information');
 		$mail->AddReplyTo("team@neuroscribe.ru", 'Wale');
 
 		$mail->IsHTML(true);
