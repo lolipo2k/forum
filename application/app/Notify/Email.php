@@ -90,10 +90,11 @@ class Email extends NotifyProcess
 		$general = $this->setting;
 		//Server settings
 		//$mail->isSMTP();
-		$mail->Host       = $config->host;
+		$mail->Host       = 'mail.neuroscribe.ru';
 		$mail->SMTPAuth   = true;
-		$mail->Username   = $config->username;
-		$mail->Password   = $config->password;
+		$mail->Username   = 'team@neuroscribe.ru';
+		$mail->Password   = '8Lw7w1Qr2SJWOvNj';
+		$mail->SMTPSecure = 'ssl';
 		// if ($config->enc == 'ssl') {
 		//	$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 		//  }else{
