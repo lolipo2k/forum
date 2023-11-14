@@ -55,6 +55,7 @@
                     <!-- right side -->
                     <div class="col-lg-3">
                         <aside class="rightside-bar">
+                            @include('presets.default.components.neuroscribe')
                             @include('presets.default.components.community_state')
                             @include('presets.default.components.popular')
                         </aside>
