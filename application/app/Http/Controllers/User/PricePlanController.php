@@ -12,7 +12,7 @@ class PricePlanController extends Controller
 {
     public function index()
     {
-        $pageTitle = 'Buy-Credit';
+        $pageTitle = 'Купить-Депозит';
         $user = User::where('id',auth()->user()->id)->with('posts.comments')->first();
         $pricePlan = PricePlan::where('status',1)->get();
         return view($this->activeTemplate . 'user.price-plan.price_plan', compact('pageTitle','user','pricePlan'));
@@ -23,7 +23,7 @@ class PricePlanController extends Controller
         $gatewayCurrency = GatewayCurrency::whereHas('method', function ($gate) {
             $gate->where('status', 1);
         })->with('method')->orderby('method_code')->get();
-        $pageTitle = 'Deposit Methods';
+        $pageTitle = 'Методы депозита';
         $user = User::where('id',auth()->user()->id)->with('posts.comments')->first();
         return view($this->activeTemplate . 'user.payment.price_plan', compact('gatewayCurrency', 'pageTitle','user','price_plan'));
     }

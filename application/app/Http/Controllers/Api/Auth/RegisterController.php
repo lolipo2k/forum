@@ -88,7 +88,7 @@ class RegisterController extends Controller
         }
 
         if(preg_match("/[^a-z0-9_]/", trim($request->username))){
-            $response[] = 'No special character, space or capital letters in username.';
+            $response[] = 'Никаких специальных символов, пробелов и заглавных букв в имени пользователя.';
             return response()->json([
                 'remark'=>'validation_error',
                 'status'=>'error',
@@ -111,7 +111,7 @@ class RegisterController extends Controller
         $response['access_token'] =  $user->createToken('auth_token')->plainTextToken;
         $response['user'] = $user;
         $response['token_type'] = 'Bearer';
-        $notify[] = 'Registration successful';
+        $notify[] = 'Регистрация прошла успешно';
         return response()->json([
             'remark'=>'registration_success',
             'status'=>'success',
@@ -164,7 +164,7 @@ class RegisterController extends Controller
 
         $adminNotification = new AdminNotification();
         $adminNotification->user_id = $user->id;
-        $adminNotification->title = 'New member registered';
+        $adminNotification->title = 'Зарегистрирован новый участник';
         $adminNotification->click_url = urlPath('admin.users.detail',$user->id);
         $adminNotification->save();
 

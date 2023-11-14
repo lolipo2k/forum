@@ -25,11 +25,11 @@ class AuthorizationController extends Controller
     {
         $user = auth()->user();
         if (!$user->status) {
-            $pageTitle = 'Banned';
+            $pageTitle = 'Запрещено';
             $type = 'ban';
         }elseif(!$user->ev) {
             $type = 'email';
-            $pageTitle = 'Verify Email';
+            $pageTitle = 'Подтвердить Email';
             $notifyTemplate = 'EVER_CODE';
         }elseif (!$user->sv) {
             $type = 'sms';
@@ -62,7 +62,7 @@ class AuthorizationController extends Controller
         if ($this->checkCodeValidity($user)) {
             $targetTime = $user->ver_code_send_at->addMinutes(2)->timestamp;
             $delay = $targetTime - time();
-            throw ValidationException::withMessages(['resend' => 'Please try after ' . $delay . ' seconds']);
+            throw ValidationException::withMessages(['resend' => 'Пожалуйста, попробуйте после ' . $delay . ' секунд']);
         }
 
         $user->ver_code = verificationCode(6);
@@ -81,7 +81,7 @@ class AuthorizationController extends Controller
             'code' => $user->ver_code
         ],[$type]);
 
-        $notify[] = ['success', 'Verification code sent successfully'];
+        $notify[] = ['success', 'Код подтверждения успешно отправлен'];
         return back()->withNotify($notify);
     }
 
@@ -100,7 +100,7 @@ class AuthorizationController extends Controller
             $user->save();
             return to_route('user.home');
         }
-        throw ValidationException::withMessages(['code' => 'Verification code didn\'t match!']);
+        throw ValidationException::withMessages(['code' => 'Код подтверждения не совпал!']);
     }
 
     public function mobileVerification(Request $request)

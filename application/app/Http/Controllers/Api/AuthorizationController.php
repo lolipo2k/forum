@@ -33,7 +33,7 @@ class AuthorizationController extends Controller
         }elseif (!$user->tv) {
             $type = '2fa';
         }else{
-            $notify[] = 'You are already verified';
+            $notify[] = 'Вы уже проверены';
             return response()->json([
                 'remark'=>'already_verified',
                 'status'=>'error',
@@ -50,7 +50,7 @@ class AuthorizationController extends Controller
             ],[$type]);
         }
 
-        $notify[] = 'Verify your account';
+        $notify[] = 'подтвердите ваш аккаунт';
         return response()->json([
             'remark'=>'code_sent',
             'status'=>'success',
@@ -68,7 +68,7 @@ class AuthorizationController extends Controller
             $targetTime = $user->ver_code_send_at->addMinutes(2)->timestamp;
             $delay = $targetTime - time();
 
-            $notify[] = 'Please try after ' . $delay . ' seconds';
+            $notify[] = 'Пожалуйста, попробуйте после ' . $delay . ' секунд';
             return response()->json([
                 'remark'=>'validation_error',
                 'status'=>'error',
@@ -92,7 +92,7 @@ class AuthorizationController extends Controller
             'code' => $user->ver_code
         ],[$type]);
 
-        $notify[] = 'Verification code sent successfully';
+        $notify[] = 'Код подтверждения успешно отправлен';
         return response()->json([
             'remark'=>'code_sent',
             'status'=>'success',

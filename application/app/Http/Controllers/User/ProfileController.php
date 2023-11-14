@@ -13,7 +13,7 @@ class ProfileController extends Controller
 {
     public function profile()
     {
-        $pageTitle = "Profile Setting";
+        $pageTitle = "Настройка профиля";
         $user = User::with('posts.comments', 'experience')->where('id', auth()->user()->id)->first();
         $info = json_decode(json_encode(getIpInfo()), true);
         $mobileCode = @implode(',', $info['code']);
@@ -36,8 +36,8 @@ class ProfileController extends Controller
             'country' => 'required|in:' . $countries,
             'mobile' => 'required|regex:/^([0-9]*)$/',
         ], [
-            'firstname.required' => 'First name field is required',
-            'lastname.required' => 'Last name field is required'
+            'firstname.required' => 'Поле имени обязательно',
+            'lastname.required' => 'Поле Фамилия обязательно'
         ]);
 
         $user = User::where('id', auth()->user()->id)->with('posts.comments')->first();
@@ -69,20 +69,20 @@ class ProfileController extends Controller
 
 
         $user->save();
-        $notify[] = ['success', 'Profile has been updated successfully'];
+        $notify[] = ['success', 'Профиль успешно обновлен'];
         return back()->withNotify($notify);
     }
 
     public function changePassword()
     {
-        $pageTitle = 'Change Password';
+        $pageTitle = 'Изменить пароль';
         $user = User::where('id', auth()->user()->id)->with('posts.comments')->first();
         return view($this->activeTemplate . 'user.password', compact('pageTitle', 'user'));
     }
 
     public function experience()
     {
-        $pageTitle = 'Experience';
+        $pageTitle = 'Опыт';
         $user = User::where('id', auth()->user()->id)->with('posts.comments')->first();
         return view($this->activeTemplate . 'user.experience.index', compact('pageTitle', 'user'));
     }
@@ -90,7 +90,7 @@ class ProfileController extends Controller
 
     public function experienceStore(Request $request)
     {
-        $pageTitle = 'Experience';
+        $pageTitle = 'Опыт';
         $user = User::where('id', auth()->user()->id)->with('posts.comments')->first();
         $request->validate([
             'title' => 'required|string',
@@ -112,20 +112,20 @@ class ProfileController extends Controller
         $experience->location = $request->location;
         $experience->responsibility = $request->responsibility;
         $experience->save();
-        $notify[] = ['success', 'Experience create successfully'];
+        $notify[] = ['success', 'Данные сохранены'];
         return redirect()->back()->withNotify($notify);
     }
 
     public function experienceEdit(Experience $experience)
     {
-        $pageTitle = 'Edit Experience';
+        $pageTitle = 'Изменить опыт';
         $user = User::where('id', auth()->user()->id)->with('posts.comments')->first();
         return view($this->activeTemplate . 'user.experience.edit', compact('pageTitle', 'user', 'experience'));
     }
 
     public function experienceUpdate(Request $request, $id)
     {
-        $pageTitle = 'experience Update';
+        $pageTitle = 'Обновление опыта';
         $request->validate([
             'title' => 'required|string',
             'company_name' => 'required|string',
@@ -146,7 +146,7 @@ class ProfileController extends Controller
         $experience->location = $request->location;
         $experience->responsibility = $request->responsibility;
         $experience->save();
-        $notify[] = ['success', 'Experience updated successfully'];
+        $notify[] = ['success', 'Данные сохранены'];
         return redirect()->back()->withNotify($notify);
     }
 
@@ -155,10 +155,10 @@ class ProfileController extends Controller
         try {
             $experience = Experience::findOrFail($id);
             $experience->delete();
-            $notify[] = ['success', 'Experience delete successfully'];
+            $notify[] = ['success', 'Данные удалены'];
             return redirect()->back()->withNotify($notify);
         } catch (\Exception $exp) {
-            $notify[] = ['error', 'Couldn\'t delete the experience'];
+            $notify[] = ['error', 'Не удалось удалить данные'];
             return back()->withNotify($notify);
         }
     }
@@ -178,13 +178,13 @@ class ProfileController extends Controller
                 $old = $user->image;
                 $user->image = fileUploader($request->image, getFilePath('userProfile'), getFileSize('userProfile'), $old);
             } catch (\Exception $exp) {
-                $notify[] = ['error', 'Couldn\'t upload your image'];
+                $notify[] = ['error', 'Не удалось загрузить ваше изображение'];
                 return back()->withNotify($notify);
             }
         }
 
         $user->save();
-        $notify[] = ['success', 'Profile has been updated successfully'];
+        $notify[] = ['success', 'Профиль успешно обновлен'];
         return redirect()->back()->withNotify($notify);
     }
 
@@ -206,10 +206,10 @@ class ProfileController extends Controller
             $password = Hash::make($request->password);
             $user->password = $password;
             $user->save();
-            $notify[] = ['success', 'Password changes successfully'];
+            $notify[] = ['success', 'Пароль успешно изменен'];
             return back()->withNotify($notify);
         } else {
-            $notify[] = ['error', 'The password doesn\'t match!'];
+            $notify[] = ['error', 'Пароль не совпадает!'];
             return back()->withNotify($notify);
         }
     }

@@ -18,7 +18,7 @@ class UserController extends Controller
 {
     public function home(Request $request)
     {
-        $pageTitle = 'Dashboard';
+        $pageTitle = 'Панель';
         $reference = @$_GET['reference'];
         if ($reference) {
             session()->put('reference', $reference);
@@ -32,10 +32,10 @@ class UserController extends Controller
         }
         return view($this->activeTemplate . 'user.dashboard', compact('pageTitle','posts','user','categories'));
     }
-    
+
     public function depositHistory(Request $request)
     {
-        $pageTitle = 'Deposit History';
+        $pageTitle = 'История депозитов';
         $deposits = auth()->user()->deposits();
         $user = User::where('id',auth()->user()->id)->with('posts.comments')->first();
         if ($request->search) {
@@ -162,7 +162,7 @@ class UserController extends Controller
         $user->reg_step = 1;
         $user->save();
 
-        $notify[] = ['success', 'Registration process completed successfully'];
+        $notify[] = ['success', 'Процесс регистрации завершен успешно'];
         return to_route('user.home')->withNotify($notify);
     }
 }

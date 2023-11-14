@@ -12,7 +12,7 @@ class RefillPlanController extends Controller
 {
     public function index()
     {
-        $pageTitle = 'Buy-Credit';
+        $pageTitle = 'Купить-Депозит';
         $user = User::where('id',auth()->user()->id)->with('posts.comments')->first();
         $gatewayCurrency = GatewayCurrency::whereHas('method', function ($gate) {
             $gate->where('status', 1);

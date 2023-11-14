@@ -35,7 +35,7 @@ class PostController extends Controller
         if ($request->category) {
             $findCategory = Category::where('id', $request->category)->first();
             if ($findCategory == null) {
-                $notify[] = ['error', 'Category is not Valid'];
+                $notify[] = ['error', 'Категория недействительна'];
                 return back()->withNotify($notify);
             }
         }
@@ -43,7 +43,7 @@ class PostController extends Controller
         $purifier = new \HTMLPurifier();
         if ($request->post_type == 'job') {
             if (auth()->user()->credit < gs()->credit) {
-                $notify[] = ['error', 'Your account not enough credit'];
+                $notify[] = ['error', 'На вашем счете недостаточно средств'];
                 return back()->withNotify($notify);
             }
             $user = User::find(auth()->id());
@@ -78,19 +78,19 @@ class PostController extends Controller
                         $post_image->save();
                     }
                 } catch (\Exception $exp) {
-                    $notify[] = ['error', 'Couldn\'t upload your image'];
+                    $notify[] = ['error', 'Не удалось загрузить ваше изображение'];
                     return back()->withNotify($notify);
                 }
             }
         }
 
-        $notify[] = ['success', 'Post Create successfully'];
+        $notify[] = ['success', 'Публикация создана успешно'];
         return back()->withNotify($notify);
     }
 
     public function edit($id)
     {
-        $pageTitle = 'Edit posts';
+        $pageTitle = 'Редактировать пост';
         $categories = Category::all();
         $post = Post::with('images')->where('id', $id)->first();
         $post->updated_at = null;
@@ -103,7 +103,7 @@ class PostController extends Controller
 
     public function update(Request $request, $id)
     {
-        $pageTitle = 'Update posts';
+        $pageTitle = 'Обновить пост';
         $request->validate([
             'post_type' => 'required|in:text,job',
             'title' => 'required|regex:/^[a-z\-_\s]+$/i',
@@ -118,7 +118,7 @@ class PostController extends Controller
         if ($request->category) {
             $findCategory = Category::where('id', $request->category)->first();
             if ($findCategory == null) {
-                $notify[] = ['error', 'Category is not Valid'];
+                $notify[] = ['error', 'Категория недействительна'];
                 return back()->withNotify($notify);
             }
         }
@@ -142,7 +142,7 @@ class PostController extends Controller
                         $post_image->save();
                     }
                 } catch (\Exception $exp) {
-                    $notify[] = ['error', 'Couldn\'t upload your image'];
+                    $notify[] = ['error', 'Не удалось загрузить ваше изображение'];
                     return back()->withNotify($notify);
                 }
             }
@@ -156,14 +156,14 @@ class PostController extends Controller
         $post->updated_at = now()->format('Y-m-d h:i:s');
         $post->save();
 
-        $notify[] = ['success', 'Post Update successfully'];
+        $notify[] = ['success', 'Пост успешно обновлён!'];
         return redirect()->route('home')->withNotify($notify);
     }
 
     public function job(Request $request)
     {
-        $pageTitle = 'job posts';
-        $emptyMessage = 'No job post found';
+        $pageTitle = 'вакансии';
+        $emptyMessage = 'Вакансия не найдена';
         $jobs = Post::where('user_id', auth()->id())->where('job', 1)->orderBy('id', 'desc')->paginate(getPaginate());
         if ($request->search) {
             $jobs = Post::where('title', 'like', "%$request->search%")->orderBy('id', 'desc')->paginate(getPaginate());
@@ -273,7 +273,7 @@ class PostController extends Controller
             $bookmark->save();
             $data = [
                 'status' => "saved",
-                'message' => "Post saved successfully",
+                'message' => "Публикация успешно сохранена",
                 'id' => $request->post_id,
             ];
 
@@ -282,7 +282,7 @@ class PostController extends Controller
         $exist_bookmark->delete();
         $data = [
             'status' => "unsaved",
-            'message' => "Post unsaved successfully",
+            'message' => "Публикация удалена",
             'id' => $request->post_id,
         ];
         return response()->json($data);
@@ -300,7 +300,7 @@ class PostController extends Controller
         if ($exist_post_report) {
             $data = [
                 'status' => "error",
-                'message' => "You are already report this post",
+                'message' => "Вы уже жалуетесь на эту публикацию",
             ];
             return response()->json($data);
         }
@@ -326,7 +326,7 @@ class PostController extends Controller
 
         $data = [
             'status' => "success",
-            'message' => "Reported successfully",
+            'message' => "Жалоба успешно отправлена",
         ];
         return response()->json($data);
     }
@@ -353,11 +353,11 @@ class PostController extends Controller
             $post_image->delete();
             $data = [
                 'status' => "success",
-                'message' => "Image deleted successfully",
+                'message' => "Изображение успешно удалено",
             ];
             return response()->json($data);
         } catch (\Exception $exp) {
-            $notify[] = ['error', 'Couldn\'t delete your image'];
+            $notify[] = ['error', 'Не удалось удалить ваше изображение.'];
             return back()->withNotify($notify);
         }
     }
@@ -376,7 +376,7 @@ class PostController extends Controller
         return response()->json(
             $data = [
                 'status' => "success",
-                'message' => "Post status updated"
+                'message' => "Статус публикации обновлен"
             ],
         );
     }

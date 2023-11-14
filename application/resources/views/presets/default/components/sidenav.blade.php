@@ -119,13 +119,13 @@
                         @lang('Change Password')
                     </a>
                 </li>
-                <li>
+             <!--   <li>
                     <a href="{{ route('user.twofactor') }}">
 
                         @lang('2Fa Security')
                     </a>
-                </li>
-                
+                </li> -->
+
             @endauth
             @guest
                 <li>

@@ -59,7 +59,7 @@ class LoginController extends Controller
 
         $credentials = request([$this->username, 'password']);
         if(!Auth::attempt($credentials)){
-            $response[] = 'Unauthorized user';
+            $response[] = 'Неавторизованный пользователь';
             return response()->json([
                 'remark'=>'validation_error',
                 'status'=>'error',
@@ -70,7 +70,7 @@ class LoginController extends Controller
         $user = $request->user();
         $tokenResult = $user->createToken('auth_token')->plainTextToken;
         $this->authenticated($request,$user);
-        $response[] = 'Login Successful';
+        $response[] = 'Авторизация успешна';
         return response()->json([
             'remark'=>'login_success',
             'status'=>'success',
@@ -115,7 +115,7 @@ class LoginController extends Controller
     {
         auth()->user()->tokens()->delete();
 
-        $notify[] = 'Logout Successful';
+        $notify[] = 'Выход из системы успешный';
         return response()->json([
             'remark'=>'logout',
             'status'=>'ok',

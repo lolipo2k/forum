@@ -37,9 +37,9 @@
                     </a>
                     <i class="fa-solid fa-circle"></i>
                     <p title="{{ showDateTime(@$post->created_at, 'd M, Y h:i A') }}" class="time-status">{{ diffForHumans($post->created_at) }}</p>
-                    
+
                     @if(@$post->job)<i class="fa-solid fa-circle"></i><p class="time-status">@lang('Deadline'): {{ showDateTime(@$post->deadline, 'd M, Y')}}</p>@endif
-                   
+
                 </div>
                 <div class="actn-dropdown-box">
                     <button class="actn-dropdown-btn">
@@ -144,14 +144,14 @@
                         class="bookmark-button
                         @if (auth()->user()) @if (
                             @$post->bookmarks?->first()->user_id == auth()->user()->id &&
-                                @$post->bookmarks?->first()->type == auth()->user()->type) 
+                                @$post->bookmarks?->first()->type == auth()->user()->type)
                                 active-bookmark @endif
                         @endif"
                         data-post-id="{{ $post->id }}" type="button">
                         <i
                             class="fa-regular fa-bookmark @if (auth()->user()) @if (
                                 @$post->bookmarks?->first()->user_id == auth()->user()->id &&
-                                    @$post->bookmarks->first()->type == auth()->user()->type) 
+                                    @$post->bookmarks->first()->type == auth()->user()->type)
                                 fa-solid @endif @endif"></i>
                     </button>
                 </div>

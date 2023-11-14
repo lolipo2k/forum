@@ -50,7 +50,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        $pageTitle = "Login";
+        $pageTitle = "Авторизоваться";
         return view($this->activeTemplate . 'user.auth.login', compact('pageTitle'));
     }
 
@@ -70,7 +70,7 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         if (!verifyCaptcha()) {
-            $notify[] = ['error', 'Invalid captcha provided'];
+            $notify[] = ['error', 'Указана неверная капча'];
             return back()->withNotify($notify);
         }
 
@@ -125,7 +125,7 @@ class LoginController extends Controller
 
         request()->session()->invalidate();
 
-        $notify[] = ['success', 'You have been logged out.'];
+        $notify[] = ['success', 'Вы вышли из системы.'];
         return to_route('user.login')->withNotify($notify);
     }
 

@@ -197,7 +197,7 @@
             @else
                 <div class="message-text">
                     <div class="text">
-                        <p>No data Found</p>
+                        <p>Данные не найдены</p>
                     </div>
                 </div>
             @endif
@@ -288,7 +288,7 @@
                                 <div class="message-text odd">
                                     <div class="text">
                                         <a href ="${url}">${data.file}</a>
-                                        <p>${data.message}</p> 
+                                        <p>${data.message}</p>
                                         <div class="msg-text-meta">
                                             <span class="text-dt">${dateTime}</span>
                                             <span><i class="fa-solid fa-check-double"></i></span>
@@ -300,7 +300,7 @@
                             message_list_wrapper.append(`
                                 <div class="message-text odd">
                                     <div class="text">
-                                        <p>${data.message}</p> 
+                                        <p>${data.message}</p>
                                         <div class="msg-text-meta">
                                             <span class="text-dt">${dateTime}</span>
                                             <span><i class="fa-solid fa-check-double"></i></span>
@@ -378,7 +378,7 @@
                             <div class="message-text">
                                 <div class="text">
                                     <a href ="${url}" target="_blank">${data.file}</a>
-                                    <p>${data.message}</p> 
+                                    <p>${data.message}</p>
                                     <div class="msg-text-meta">
                                         <span class="text-dt">${dateTime}</span>
                                         <span><i class="fa-solid fa-check-double"></i></span>
@@ -391,7 +391,7 @@
                         message_list_wrapper.append(`
                             <div class="message-text ">
                                 <div class="text">
-                                    <p>${data.message}</p> 
+                                    <p>${data.message}</p>
                                     <div class="msg-text-meta">
                                         <span class="text-dt">${dateTime}</span>
                                         <span><i class="fa-solid fa-check-double"></i></span>

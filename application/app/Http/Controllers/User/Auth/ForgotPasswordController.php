@@ -32,7 +32,7 @@ class ForgotPasswordController extends Controller
 
     public function showLinkRequestForm()
     {
-        $pageTitle = "Account Recovery";
+        $pageTitle = "Восстановление аккаунта";
         return view($this->activeTemplate . 'user.auth.passwords.email', compact('pageTitle'));
     }
 
@@ -45,7 +45,7 @@ class ForgotPasswordController extends Controller
         $user = User::where($fieldType, $request->value)->first();
 
         if (!$user) {
-            $notify[] = ['error', 'Couldn\'t find any account with this information'];
+            $notify[] = ['error', 'Не удалось найти аккаунт с этой информацией'];
             return back()->withNotify($notify);
         }
 
@@ -69,7 +69,7 @@ class ForgotPasswordController extends Controller
 
         $email = $user->email;
         session()->put('pass_res_mail',$email);
-        $notify[] = ['success', 'Password reset email sent successfully'];
+        $notify[] = ['success', 'Письмо для сброса пароля успешно отправлено'];
         return to_route('user.password.code.verify')->withNotify($notify);
     }
 
@@ -82,10 +82,10 @@ class ForgotPasswordController extends Controller
     }
 
     public function codeVerify(){
-        $pageTitle = 'Verify Email';
+        $pageTitle = 'Подтвердить Email';
         $email = session()->get('pass_res_mail');
         if (!$email) {
-            $notify[] = ['error','Oops! session expired'];
+            $notify[] = ['error','Упс! сессия истекла'];
             return to_route('user.password.request')->withNotify($notify);
         }
         return view($this->activeTemplate.'user.auth.passwords.code_verify',compact('pageTitle','email'));
@@ -100,10 +100,10 @@ class ForgotPasswordController extends Controller
         $code =  str_replace(' ', '', $request->code);
 
         if (PasswordReset::where('token', $code)->where('email', $request->email)->count() != 1) {
-            $notify[] = ['error', 'Verification code doesn\'t match'];
+            $notify[] = ['error', 'Код подтверждения не соответствует'];
             return to_route('user.password.request')->withNotify($notify);
         }
-        $notify[] = ['success', 'You can change your password.'];
+        $notify[] = ['success', 'Вы можете изменить свой пароль.'];
         session()->flash('fpass_email', $request->email);
         return to_route('user.password.reset', $code)->withNotify($notify);
     }

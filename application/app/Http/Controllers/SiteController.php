@@ -29,11 +29,11 @@ class SiteController extends Controller
         if ($reference) {
             session()->put('reference', $reference);
         }
-        $pageTitle = 'Home';
+        $pageTitle = 'Главная';
 
         $posts = Post::with('user', 'comments', 'votes', 'bookmarks')->where('status', 1)->orderBy('id','desc')->paginate(getPaginate());
         $categories = Category::where('status',1)->get();
-       
+
         if ($request->ajax()) {
 
             $view = view($this->activeTemplate . 'components.main', compact('posts','categories'))->render();
@@ -45,14 +45,14 @@ class SiteController extends Controller
 
     public function textPost()
     {
-        $pageTitle = 'Add Post';
+        $pageTitle = 'Добавить пост';
         $categories = Category::where('status',1)->get();
         return view($this->activeTemplate . 'add-post', compact('pageTitle', 'categories'));
     }
 
     public function addJobPost()
     {
-        $pageTitle = 'Job Post';
+        $pageTitle = 'Объявление о вакансии';
         return view($this->activeTemplate . 'job-post', compact('pageTitle'));
     }
 
@@ -61,7 +61,7 @@ class SiteController extends Controller
         if (!auth()->check()) {
             return redirect()->route('user.login');
         }
-        $pageTitle = 'Saved Post';
+        $pageTitle = 'Сохранённые';
         $posts = Post::with(['user', 'comments', 'votes','bookmarks'])->where('status', 1)->whereHas('bookmarks', function ($q) {
             $q->where('user_id', auth()->user()->id)->where('type', auth()->user()->type);
         })->paginate(getPaginate());
@@ -75,7 +75,7 @@ class SiteController extends Controller
 
     public function postDetails($id)
     {
-        $pageTitle = 'Post Details';
+        $pageTitle = 'Детали';
         $post = Post::with(['user', 'comments', 'comments.votes', 'comments.user', 'votes', 'bookmarks','images'])->findOrFail($id);
         $post->views = $post->views + 1;
         $post->save();
@@ -87,7 +87,7 @@ class SiteController extends Controller
         $pageTitle = '';
         $user = User::where('id',$id)->with('posts.comments')->first();
         $chat = Chat::with('receiver')->where('sender_id',auth()->id())->where('receiver_id',$id)->orWhere('receiver_id',auth()->id())->orWhere('sender_id',$id)->orderBy('created_at','asc')->get();
-        
+
         $posts = Post::where('user_id', $user->id)->where('status', 1)->with('user', 'comments', 'votes', 'bookmarks')->paginate(getPaginate());
         if ($request->ajax()) {
             $view = view($this->activeTemplate . 'components.main', compact('posts', 'pageTitle', 'user','chat'))->render();
@@ -98,7 +98,7 @@ class SiteController extends Controller
 
     public function popularPost(Request $request)
     {
-        $pageTitle = 'Popular post';
+        $pageTitle = 'Популярные публикации';
         $posts = Post::where('status', 1)->with(['user', 'comments.user', 'votes', 'bookmarks'])->orderBy('views', 'desc')->take(100)->paginate(getPaginate());
         $categories = Category::where('status',1)->get();
         if ($request->ajax()) {
@@ -110,10 +110,10 @@ class SiteController extends Controller
 
     public function jobPost(Request $request)
     {
-        $pageTitle = 'Job post';
+        $pageTitle = 'Должность о вакансии';
         $categories = Category::where('status',1)->get();
         $posts = Post::where('status', 1)->where('job', 1)->with('user', 'comments', 'votes', 'bookmarks')->orderBy('id','desc')->paginate(getPaginate());
-        
+
         if ($request->ajax()) {
             $view = view($this->activeTemplate . 'components.main', compact('posts','categories', 'pageTitle'))->render();
             return response()->json(['html' => $view]);
@@ -135,7 +135,7 @@ class SiteController extends Controller
 
     public function profile()
     {
-        $pageTitle = 'Profile';
+        $pageTitle = 'Профиль';
         return view($this->activeTemplate . 'profile-details', compact('pageTitle'));
     }
 
@@ -149,7 +149,7 @@ class SiteController extends Controller
 
     public function contact()
     {
-        $pageTitle = "Contact Us";
+        $pageTitle = "Связаться с нами";
         return view($this->activeTemplate . 'contact', compact('pageTitle'));
     }
 
@@ -187,7 +187,7 @@ class SiteController extends Controller
 
         $adminNotification = new AdminNotification();
         $adminNotification->user_id = auth()->user() ? auth()->user()->id : 0;
-        $adminNotification->title = 'A new support ticket has opened ';
+        $adminNotification->title = 'Открыт новый тикет в службу поддержки ';
         $adminNotification->click_url = urlPath('admin.ticket.view', $ticket->id);
         $adminNotification->save();
 
@@ -196,7 +196,7 @@ class SiteController extends Controller
         $message->message = $request->message;
         $message->save();
 
-        $notify[] = ['success', 'Ticket created successfully!'];
+        $notify[] = ['success', 'Тикет успешно сохранён!'];
 
         return to_route('ticket.view', [$ticket->ticket])->withNotify($notify);
     }
@@ -233,7 +233,7 @@ class SiteController extends Controller
 
     public function cookiePolicy()
     {
-        $pageTitle = 'Cookie-Policy';
+        $pageTitle = 'Политика использования файлов cookie';
         $cookie = Frontend::where('data_keys', 'cookie.data')->first();
         return view($this->activeTemplate . 'cookie', compact('pageTitle', 'cookie'));
     }

@@ -42,7 +42,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        $pageTitle = "Register";
+        $pageTitle = "Регистрация";
         $info = json_decode(json_encode(getIpInfo()), true);
         $mobileCode = @implode(',', $info['code']);
         $countries = json_decode(file_get_contents(resource_path('views/includes/country.json')));
@@ -88,19 +88,19 @@ class RegisterController extends Controller
         $request->session()->regenerateToken();
 
         if (preg_match("/[^a-z0-9_]/", trim($request->username))) {
-            $notify[] = ['info', 'Username can contain only small letters, numbers and underscore.'];
-            $notify[] = ['error', 'No special character, space or capital letters in username.'];
+            $notify[] = ['info', 'Имя пользователя может содержать только строчные буквы, цифры и подчеркивание.'];
+            $notify[] = ['error', 'Никаких специальных символов, пробелов и заглавных букв в имени пользователя.'];
             return back()->withNotify($notify)->withInput($request->all());
         }
 
         if (!verifyCaptcha()) {
-            $notify[] = ['error', 'Invalid captcha provided'];
+            $notify[] = ['error', 'Указана неверная капча'];
             return back()->withNotify($notify);
         }
 
         $exist = User::where('mobile', $request->mobile_code . $request->mobile)->first();
         if ($exist) {
-            $notify[] = ['error', 'The mobile number already exists'];
+            $notify[] = ['error', 'Номер мобильного телефона уже существует'];
             return back()->withNotify($notify)->withInput();
         }
 
@@ -147,7 +147,7 @@ class RegisterController extends Controller
 
         $adminNotification = new AdminNotification();
         $adminNotification->user_id = $user->id;
-        $adminNotification->title = 'New member registered';
+        $adminNotification->title = 'Зарегистрирован новый участник';
         $adminNotification->click_url = urlPath('admin.users.detail', $user->id);
         $adminNotification->save();
 

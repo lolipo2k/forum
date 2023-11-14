@@ -29,7 +29,7 @@ class ChatController extends Controller
                 $filename       = fileUploader($request->file, getFilePath('chatFiles'));
                 $chat->file    = $filename;
             } catch (\Exception $exp) {
-                $notify[]       = ['error', 'Couldn\'t upload your image'];
+                $notify[]       = ['error', 'Не удалось загрузить ваше изображение'];
                 return back()->withNotify($notify);
             }
         }
@@ -40,7 +40,7 @@ class ChatController extends Controller
         $userNotification = new UserNotification();
         $userNotification->user_from = auth()->id();
         $userNotification->user_to = $chat->receiver_id;
-        $userNotification->title = auth()->user()->fullname . ' message to you ' . $chat->message;
+        $userNotification->title = auth()->user()->fullname . ' сообщение тебе ' . $chat->message;
         $userNotification->read_status = 0;
         $userNotification->type = 'message';
         $userNotification->click_url = url('/') . '/user-profile/' . auth()->id();
@@ -83,7 +83,7 @@ class ChatController extends Controller
             );
             return response()->download($path, $chat->file, $headers);
         }
-        $notify[] = ['error', 'file is missing'];
+        $notify[] = ['error', 'файл отсутствует'];
         return back()->withNotify($notify);
     }
 }

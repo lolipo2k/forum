@@ -30,7 +30,7 @@ class ForgotPasswordController extends Controller
         $user = User::where($fieldType, $request->value)->first();
 
         if (!$user) {
-            $notify[] = 'Couldn\'t find any account with this information';
+            $notify[] = 'Не удалось найти аккаунт с этой информацией';
             return response()->json([
                 'remark'=>'validation_error',
                 'status'=>'error',
@@ -57,7 +57,7 @@ class ForgotPasswordController extends Controller
         ],['email']);
 
         $email = $user->email;
-        $response[] = 'Verification code sent to mail';
+        $response[] = 'Код подтверждения отправлен на почту';
         return response()->json([
             'remark'=>'code_sent',
             'status'=>'success',
@@ -86,7 +86,7 @@ class ForgotPasswordController extends Controller
         $code =  $request->code;
 
         if (PasswordReset::where('token', $code)->where('email', $request->email)->count() != 1) {
-            $notify[] = 'Verification code doesn\'t match';
+            $notify[] = 'Код подтверждения не соответствует';
             return response()->json([
                 'remark'=>'validation_error',
                 'status'=>'error',
@@ -94,7 +94,7 @@ class ForgotPasswordController extends Controller
             ]);
         }
 
-        $response[] = 'You can change your password.';
+        $response[] = 'Вы можете изменить свой пароль.';
         return response()->json([
             'remark'=>'verified',
             'status'=>'success',

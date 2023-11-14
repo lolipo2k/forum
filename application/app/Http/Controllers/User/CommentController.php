@@ -39,17 +39,17 @@ class CommentController extends Controller
             ]);
 
             $post = Post::with('user')->where('id', $request->post_id)->first();
-            
+
             // User notification
             $userNotification = new UserNotification();
             $userNotification->user_from = auth()->id();
             $userNotification->user_to = $post->user->id;
-            $userNotification->title = auth()->user()->fullname . ' commented on your post ' . $post->title;
+            $userNotification->title = auth()->user()->fullname . ' прокомментировал ваше сообщение ' . $post->title;
             $userNotification->read_status = 0;
             $userNotification->type = 'comment';
             $userNotification->click_url = url('/') . '/post-details/' . $post->id;
-            $userNotification->save();           
-            
+            $userNotification->save();
+
             $data = [
                 'status' => "success",
                 'message' => "",
@@ -98,7 +98,7 @@ class CommentController extends Controller
             $userNotification = new UserNotification();
             $userNotification->user_from = auth()->id();
             $userNotification->user_to = $commentNotify->user->id;
-            $userNotification->title = auth()->user()->fullname . ' reply commented on your comment ' . $commentNotify->comment;
+            $userNotification->title = auth()->user()->fullname . ' ответил на ваш комментарий ' . $commentNotify->comment;
             $userNotification->read_status = 0;
             $userNotification->type = 'comment-reply';
             $userNotification->click_url = url('/') . '/post-details/' . $post->id;
@@ -192,12 +192,12 @@ class CommentController extends Controller
         $exist_vote =  $comment_vote->where('comment_id', $request->comment_id)->where('user_id', auth()->user()->id)->where('type', auth()->user()->type)->first();
 
         $comment = Comment::where('id', $request->comment_id)->first();
-        
+
         // User notification
         $userNotification = new UserNotification();
         $userNotification->user_from = auth()->id();
         $userNotification->user_to = $comment->user_id;
-        $userNotification->title = (!$exist_vote) ? auth()->user()->fullname. ' like your comment ' .$comment->comment : auth()->user()->fullname. ' Unlike your post ' .$comment->comment;
+        $userNotification->title = (!$exist_vote) ? auth()->user()->fullname. ' нравится твой комментарий ' .$comment->comment : auth()->user()->fullname. ' Unlike your post ' .$comment->comment;
         $userNotification->read_status = 0;
         $userNotification->type = 'comment-vote';
         $userNotification->click_url = url('/') . '/post-details/' . $comment->post_id;
@@ -249,7 +249,7 @@ class CommentController extends Controller
 
     public function comment_report(Request $request)
     {
-       
+
         $request->validate([
             'post_id' => 'required|numeric',
             'comment_id' => 'required|numeric',
@@ -262,19 +262,19 @@ class CommentController extends Controller
         if ($exist_comment_report) {
             $data = [
                 'status' => "error",
-                'message' => "You are already report this comment",
+                'message' => "Вы уже пожаловались на этот комментарий",
             ];
             return response()->json($data);
         }
 
         $comment = Comment::where('id', $request->comment_id)->first();
 
-        
+
         // User notification
         $userNotification = new UserNotification();
         $userNotification->user_from = auth()->id();
         $userNotification->user_to = $comment->user_id;
-        $userNotification->title = auth()->user()->fullname. ' report your comment ' .$comment->comment;
+        $userNotification->title = auth()->user()->fullname. ' пожаловался на ваш комментарий ' .$comment->comment;
         $userNotification->read_status = 0;
         $userNotification->type = 'comment-report';
         $userNotification->click_url = url('/') . '/post-details/' . $comment->post_id;
@@ -291,7 +291,7 @@ class CommentController extends Controller
 
         $data = [
             'status' => "success",
-            'message' => "Reported successfully",
+            'message' => "Жалоба отправлена",
         ];
         return response()->json($data);
     }

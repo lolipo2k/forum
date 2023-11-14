@@ -26,7 +26,7 @@
                                                         alt="avatar">
                                                 </div>
                                                 <input type="text" class="form-control form--control feed-input"
-                                                    placeholder="Open a Discussion"
+                                                    placeholder="Открыть обсуждение"
                                                     onclick="{{ request()->routeIs('post.job') ? 'jobFeedInput()' : 'feedInput()' }}">
                                             </div>
                                         </div>

@@ -13,13 +13,13 @@ class ApplyJobController extends Controller
     public function store(Request $request)
     {
         if (!auth()->user()) {
-            $notify[] = ['error', 'Please Log into your account'];
+            $notify[] = ['error', 'Пожалуйста, войдите в свою учетную запись'];
             return back()->withNotify($notify);
         }
         $applyJob = new ApplyJob();
         $exist_apply = $applyJob->where('post_id', $request->post_id)->where('user_id', auth()->id())->first();
         if ($exist_apply) {
-            $notify[] = ['error', 'You are already applied this job post.'];
+            $notify[] = ['error', 'Вы уже подали заявку на эту вакансию.'];
             return back()->withNotify($notify);
         }
         $request->validate([
@@ -35,27 +35,27 @@ class ApplyJobController extends Controller
             try {
                 $applyJob->file = fileUploader($request->file, getFilePath('applyJob'));
             } catch (\Exception $exp) {
-                $notify[] = ['error', 'Couldn\'t upload your image'];
+                $notify[] = ['error', 'Не удалось загрузить ваше изображение'];
                 return back()->withNotify($notify);
             }
         }
 
         $applyJob->save();
-        $notify[] = ['success', 'Job Apply successfully'];
+        $notify[] = ['success', 'Вакансия успешно принята'];
         return back()->withNotify($notify);
-  
+
     }
 
     public function all_candidate(Request $request, $id)
     {
 
-        $pageTitle = 'job posts';
-        $emptyMessage = 'No candidates found';
+        $pageTitle = 'вакансии';
+        $emptyMessage = 'Кандидатов не найдено';
         $candidates = ApplyJob::with('user', 'post')->where('post_id', $id)->orderBy('id','desc')->paginate(getPaginate());
         $user = User::where('id', auth()->user()->id)->with('posts.comments')->first();
 
         if ($request->search) {
-           
+
             $candidates = ApplyJob::where('post_id',$id)->with(['user','post'])->whereHas('user',function ($q) use ($request) {
                 $q->where('firstname', 'like', "%$request->search%")->orWhere('lastname', 'like', "%$request->search%");
             })->orderBy('id','desc')->paginate(getPaginate());
