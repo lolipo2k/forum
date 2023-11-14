@@ -12,7 +12,7 @@
                     <!-- left side -->
                     @include('presets.default.components.leftside')
                     <!-- left side / -->
-                    
+
                     {{-- main content --}}
                     <div class="col-xl-6 col-lg-6">
                         <div class="row justify-content-center">
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-        
+
          {{-- report modal --}}
         @include($activeTemplate . 'components.report-modal')
 
@@ -92,7 +92,7 @@
                 })
                 .done(function(response) {
                     if (response.html == '') {
-                        $('.auto-load').html("<h5>No Data Found.</h5>");
+                        $('.auto-load').html("<h5>Данные не найдены.</h5>");
                         return;
                     }
 

@@ -26,7 +26,7 @@
                                                         alt="avatar">
                                                 </div>
                                                 <input type="text" class="form-control form--control feed-input"
-                                                    placeholder="Open a Discussion"
+                                                    placeholder="Начать обсуждение"
                                                     onclick="{{ request()->routeIs('post.job') ? 'jobFeedInput()' : 'feedInput()' }}">
                                             </div>
                                         </div>
@@ -64,7 +64,7 @@
                 </div>
             </div>
         </div>
-        
+
         {{-- report modal --}}
         @include($activeTemplate . 'components.report-modal')
 
@@ -131,7 +131,7 @@
                 })
                 .done(function(response) {
                     if (response.html == '') {
-                        $('.auto-load').html("<h5>No Data Found.</h5>");
+                        $('.auto-load').html("<h5>Данные не найдены.</h5>");
                         return;
                     }
 

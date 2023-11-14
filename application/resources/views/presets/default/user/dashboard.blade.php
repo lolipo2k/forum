@@ -138,7 +138,7 @@
                 })
                 .done(function(response) {
                     if (response.html == '') {
-                        $('.auto-load').html("<h5>No Data Found.</h5>");
+                        $('.auto-load').html("<h5>Данные не найдены.</h5>");
                         return;
                     }
 
