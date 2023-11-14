@@ -13220,3 +13220,16 @@ li.login-registration-list__item .social-list__item .social-list__link i {
 .menu-item .icon {
   margin-top: 5px;
 }
+
+.neuroscribe-content{
+  padding: 60px 0px 0px 20px;
+  width: 326px;
+}
+
+.neuroscribe-content h5{
+  margin-bottom: 15px;
+}
+
+.neuroscribe-content__info{
+  color: #7e838f;
+}
