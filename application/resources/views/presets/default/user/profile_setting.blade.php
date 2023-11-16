@@ -90,7 +90,7 @@
                                                             value="{{ @$user->address->zip }}">
                                                         <label for="zip-code" class="form--label">@lang('Zip Code')</label>
                                                     </div>
-                                                </div> -->
+                                                </div>
 
 
                                                 <div class="col-lg-6 mb-3">
@@ -105,7 +105,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
 
                                                 <div class="col-xxl-6 col-lg-6 col-md-12 mb-3">
                                                     <div class="form-group">
@@ -194,13 +194,13 @@
                                                 </div>
 
 
-                                                <div class="col-lg-12">
+                                               <!-- <div class="col-lg-12">
                                                     <div class="form-group">
                                                         <textarea class="form--control" placeholder="" name="address">{{ @$user->address->address }}</textarea>
                                                         <label for="email"
                                                             class="form--label">@lang('Address')</label>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="col-lg-4">
                                                     <button type="submit"
                                                         class="btn btn--base w-100">@lang('Save Now')</button>
