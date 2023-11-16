@@ -71,7 +71,10 @@ class RegisterController extends Controller
             'country_code' => 'required|in:'.$countryCodes,
             'country' => 'required|in:'.$countries,
             'agree' => $agree
-        ]);
+        ],
+    [
+        "username.unique" => "Такое имя пользователя уже существует"
+    ]);
         return $validate;
     }
 
