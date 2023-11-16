@@ -16,7 +16,7 @@
                     {{-- main content --}}
                     <div class="col-xl-6 col-lg-6">
                         <div class="row pt-80 justify-content-center gy-4 mb-4">
-                            
+
                             <form class="register" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row gy-4 justify-content-center">
@@ -79,18 +79,19 @@
                                                         <input type="text" class="form--control" id="email"
                                                             placeholder="" name="email" value="{{ @$user->email }}"
                                                             readonly>
-                                                        <label for="email" class="form--label">@lang('Your Email ')</label>
+                                                        <label for="email" class="form--label">Почта</label>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-lg-6 mb-3">
+                                               <!-- <div class="col-lg-6 mb-3">
                                                     <div class="form-group">
                                                         <input type="text" class="form--control" id="zip-code"
                                                             placeholder="" name="zip"
                                                             value="{{ @$user->address->zip }}">
                                                         <label for="zip-code" class="form--label">@lang('Zip Code')</label>
                                                     </div>
-                                                </div>
+                                                </div> -->
+
 
                                                 <div class="col-lg-6 mb-3">
                                                     <div class="form-group">
@@ -105,6 +106,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="col-xxl-6 col-lg-6 col-md-12 mb-3">
                                                     <div class="form-group">
                                                         <div class="input-group mb-3">
@@ -122,7 +124,7 @@
                                                 </div>
 
 
-                                                <div class="col-lg-6 mb-3">
+                                               <!-- <div class="col-lg-6 mb-3">
                                                     <div class="form-group">
                                                         <input type="text" class="form--control" id="state"
                                                             placeholder="" name="state"
@@ -137,7 +139,7 @@
                                                             value="{{ @$user->address->city }}">
                                                         <label for="city" class="form--label">@lang('City')</label>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="col-lg-6 mb-3">
                                                     <div class="form-group">
                                                         <input type="text" class="form--control" id="instagram"
@@ -186,7 +188,7 @@
                                                                             {{ __($skill) }}</option>
                                                                     @endforeach
                                                                 @endif
-    
+
                                                             </select>
                                                         </div>
                                                     </div>

@@ -30,11 +30,7 @@ class ProfileController extends Controller
         // dd($request->all());
         $request->validate([
             'firstname' => 'required|string',
-            'lastname' => 'required|string',
-            'mobile_code' => 'required|in:' . $mobileCodes,
-            'country_code' => 'required|in:' . $countryCodes,
-            'country' => 'required|in:' . $countries,
-            'mobile' => 'required|regex:/^([0-9]*)$/',
+            'lastname' => 'required|string'
         ], [
             'firstname.required' => 'Поле имени обязательно',
             'lastname.required' => 'Поле Фамилия обязательно'
