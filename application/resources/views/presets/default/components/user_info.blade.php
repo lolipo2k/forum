@@ -98,6 +98,7 @@
                             </div>
 
                             <p>{{ __(showDateTime(@$experience?->start_date, 'd.m Y')) }}
+                                -
                                 @if (@$experience?->end_date)
                                     - {{ __(showDateTime(@$experience?->end_date, 'd.m Y')) }}
                                     . {{ myDiffForHumans(@$experience?->start_date, @$experience?->end_date) }}

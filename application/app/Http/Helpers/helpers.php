@@ -313,7 +313,7 @@ function diffForHumans($date)
 function myDiffForHumans($date1, $date2)
 {
     $lang = session()->get('lang');
-    Carbon::setlocale($lang);
+    Carbon::setlocale('ru');
 
     $date1 = Carbon::parse($date1);
     $date2 = Carbon::parse($date2);
