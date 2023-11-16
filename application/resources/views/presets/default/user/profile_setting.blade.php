@@ -139,7 +139,7 @@
                                                             value="{{ @$user->address->city }}">
                                                         <label for="city" class="form--label">@lang('City')</label>
                                                     </div>
-                                                </div> -->
+                                                </div>
                                                 <div class="col-lg-6 mb-3">
                                                     <div class="form-group">
                                                         <input type="text" class="form--control" id="instagram"
@@ -148,7 +148,7 @@
                                                         <label for="instagram"
                                                             class="form--label">@lang('Instagram')</label>
                                                     </div>
-                                                </div>
+                                                </div>-->
                                                 <div class="col-lg-6 mb-3">
                                                     <div class="form-group">
                                                         <input type="text" class="form--control" id="facebook"
@@ -177,8 +177,7 @@
                                                             <label class="mb-3">@lang('Skills')</label>
                                                             <small class="ms-2 mt-2">@lang('Separate multiple keywords by')
                                                                 <code>,</code>(@lang('comma')) @lang('or')
-                                                                <code>@lang('enter')</code>
-                                                                @lang('key')</small>
+                                                                <code>@lang('enter')</code></small>
                                                             <select name="skills[]"
                                                                 class="form-control form--control select2-auto-tokenize"
                                                                 multiple="multiple" required>

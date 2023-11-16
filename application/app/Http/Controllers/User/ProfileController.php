@@ -29,11 +29,8 @@ class ProfileController extends Controller
         $countries = implode(',', array_column($countryData, 'country'));
         // dd($request->all());
         $request->validate([
-            'firstname' => 'required|string',
-            'lastname' => 'required|string'
-        ], [
-            'firstname.required' => 'Поле имени обязательно',
-            'lastname.required' => 'Поле Фамилия обязательно'
+            'firstname' => 'string',
+            'lastname' => 'string'
         ]);
 
         $user = User::where('id', auth()->user()->id)->with('posts.comments')->first();

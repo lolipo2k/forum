@@ -111,9 +111,9 @@
     "Add New": "Добавить новый",
     "Item": "Item",
     "Meta Keywords": "Meta Keywords",
-    "Separate multiple keywords by": "Separate multiple keywords by",
-    "comma": "comma",
-    "or": "or",
+    "Separate multiple keywords by": "Разделите несколько ключевых слов по",
+    "comma": "запятой",
+    "or": "или",
     "enter": "enter",
     "key": "key",
     "Meta Description": "Meta Description",
@@ -575,5 +575,7 @@
     "Nothing to experience added": "Опыт не добавлен",
     "User Name:": "Имя пользователя",
     "Personal Information": "Персональная информация",
-    "Save Now": "Сохранить"
+    "Save Now": "Сохранить",
+    "Facebook": "Вконтакте",
+    "Twitter": "Телеграм"
 }
