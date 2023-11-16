@@ -11,9 +11,9 @@ class CategoryController extends Controller
 {
     public function categories(){
         $pageTitle = 'Categories';
-        $emptyMessage = 'No data found';
+        $emptyMessage = 'Данные не найдены';
         $categories = Category::paginate(getPaginate());
-        return view('admin.categories.log', compact('pageTitle', 'categories')); 
+        return view('admin.categories.log', compact('pageTitle', 'categories'));
     }
 
     public function categoryStore(Request $request){

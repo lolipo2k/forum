@@ -35,7 +35,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="card-footer create text-center">
-                                                    <a href="{{route('user.price.plan.insert',@$item->id)}}" class="btn btn--base planPurchase"> 
+                                                    <a href="{{route('user.price.plan.insert',@$item->id)}}" class="btn btn--base planPurchase">
                                                         <i class="fa-solid fa-cart-plus"></i>
                                                         @lang('Purchase')
                                                     </a>
@@ -44,7 +44,7 @@
                                         </div>
                                     @empty
                                         <div class="card-header section-bg">
-                                            <strong>@lang('No data Found')</strong>
+                                            <strong>Данные не найдены</strong>
                                         </div>
                                     @endforelse
                                 </div>
@@ -63,7 +63,7 @@
                     </div>
                     <!-- right side /-->
 
-                    
+
                 </div>
             </div>
         </div>

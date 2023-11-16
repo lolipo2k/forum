@@ -52,7 +52,7 @@ class PostController extends Controller
     public function posts()
     {
         $pageTitle = 'All Posts';
-        $emptyMessage = "No data found";
+        $emptyMessage = "Данные не найдены";
         $posts = $this->postData('text');
         return view('admin.posts.list', compact('pageTitle', 'posts', 'emptyMessage'));
     }
@@ -60,7 +60,7 @@ class PostController extends Controller
     public function job_post_list()
     {
         $pageTitle = 'All Job Posts';
-        $emptyMessage = "No data found";
+        $emptyMessage = "Данные не найдены";
         $posts = $this->postData('job');
         return view('admin.posts.job_list', compact('pageTitle', 'posts', 'emptyMessage'));
     }
@@ -82,7 +82,7 @@ class PostController extends Controller
                     ->orWhere('content', 'like', "%$search%");
             });
         }
-        
+
         return $posts->with('user','category','apply_job')->where($type,1)->orderBy('id', 'desc')->paginate(getPaginate());
     }
 

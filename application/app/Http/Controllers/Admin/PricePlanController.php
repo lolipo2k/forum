@@ -12,7 +12,7 @@ class PricePlanController extends Controller
     public function index()
     {
         $pageTitle = 'Price-Plan';
-        $emptyMessage = "No data found";
+        $emptyMessage = "Данные не найдены";
         $data = PricePlan::paginate(getPaginate());
         return view('admin.price_plan.list', compact('pageTitle', 'data', 'emptyMessage'));
     }

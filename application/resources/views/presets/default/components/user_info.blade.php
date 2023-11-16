@@ -97,12 +97,12 @@
                                 @endif
                             </div>
 
-                            <p>{{ __(showDateTime(@$experience?->start_date, 'M Y')) }}
+                            <p>{{ __(showDateTime(@$experience?->start_date, 'd.m Y')) }}
                                 @if (@$experience?->end_date)
-                                    - {{ __(showDateTime(@$experience?->end_date, 'M Y')) }}
+                                    - {{ __(showDateTime(@$experience?->end_date, 'd.m Y')) }}
                                     . {{ myDiffForHumans(@$experience?->start_date, @$experience?->end_date) }}
                                 @else
-                                    @lang('- Present')
+                                настоящее время
                                     . {{ myDiffForHumans(@$experience?->start_date, now()) }}
                                 @endif
                             </p>
@@ -111,7 +111,7 @@
                     </div>
                 @endforeach
             @else
-                <p>@lang('Nothing to experience added')</p>
+                <p>Ничего не добавлено</p>
             @endif
 
         </div>
@@ -135,7 +135,7 @@
                 </div>
             </div>
         @else
-            <span>@lang('Nothing to skill added')</span>
+            <span>Ничего не добавлено</span>
         @endif
     </div>
 </div>

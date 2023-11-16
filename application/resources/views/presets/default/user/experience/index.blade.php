@@ -27,7 +27,7 @@
                                                 <input type="text" class="form-control form--control"
                                                     id="create-recipient-name" name="title" placeholder="">
                                                 <label class="form--label"
-                                                    for="create-recipient-name">@lang('Title')</label>
+                                                    for="create-recipient-name">Должность</label>
                                             </div>
                                             <div class="form-group mb-4">
                                                 <input type="text" class="form-control form--control"

@@ -27,7 +27,7 @@
 
     <link rel="stylesheet" href="{{ asset($activeTemplateTrue . 'css/emoji.css') }}">
     <!-- Main css -->
-    
+
     <link rel="stylesheet" href="{{ asset($activeTemplateTrue . 'css/glightbox.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/admin/css/select2.min.css') }}">
@@ -36,7 +36,7 @@
     @stack('style-lib')
 
     @stack('style')
-    
+
     <link rel="stylesheet"
         href="{{ asset($activeTemplateTrue . 'css/color.php') }}?color={{ $general->base_color }}&secondColor={{ $general->secondary_color }}">
 </head>
@@ -87,14 +87,14 @@
 
     <script src="{{ asset('assets/admin/js/select2.min.js') }}"></script>
 
-    
+
     <script src="{{ asset('assets/common/js/ckeditor.js') }}"></script>
 
-    
+
     <!-- main js -->
     <script src="{{ asset($activeTemplateTrue . 'js/main.js') }}"></script>
 
-  
+
 
 
     @stack('script-lib')

@@ -133,7 +133,7 @@
                         var html =
                             `
                                     <div class="no-data">
-                                        <p>No data found </p>
+                                        <p>Данные не найдены </p>
                                     </div>
                                 `;
                         appendClass.removeClass('d-none').html(html);

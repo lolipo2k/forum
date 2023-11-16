@@ -13,7 +13,7 @@ class PostCommentController extends Controller
     public function postCommentReports()
     {
         $pageTitle = 'Flags';
-        $emptyMessage = "No data found";
+        $emptyMessage = "Данные не найдены";
         $data = PostCommentReport::with(['post.category', 'comment'])->paginate(getPaginate());
         return view('admin.post_comment_reports.list', compact('pageTitle', 'data', 'emptyMessage'));
     }
