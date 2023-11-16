@@ -19,7 +19,7 @@
                         @endif
                     </a>
 
-                    <a href="{{ route('user.price.plan.index') }}" class="menu-item">
+                 <!--   <a href="{{ route('user.price.plan.index') }}" class="menu-item">
                         <span class="icon"><i class="fa-solid fa-award"></i></span>
                         <h6 class="text {{ menuActive('user.price.plan.index') }}">@lang('Price Plan')</h6>
                     </a>
@@ -37,7 +37,7 @@
                     <a href="{{ route('user.deposit.history') }}" class="menu-item">
                         <span class="icon"><i class="fa-solid fa-receipt"></i></span>
                         <h6 class="text {{ menuActive('user.deposit.history') }}">@lang('Deposit-Log')</h6>
-                    </a>
+                    </a> -->
 
                     <a href="{{ route('user.profile.setting') }}" class="menu-item">
                         <span class="icon"><i class="fa-solid fa-screwdriver-wrench"></i></span>
