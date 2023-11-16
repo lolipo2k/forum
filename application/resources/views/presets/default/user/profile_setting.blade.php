@@ -105,7 +105,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                </div> -->
+                                                </div>
 
                                                 <div class="col-xxl-6 col-lg-6 col-md-12 mb-3">
                                                     <div class="form-group">
@@ -122,7 +122,7 @@
                                                         <small class="text-danger mobileExist"></small>
                                                     </div>
                                                 </div>
-
+-->
 
                                                <!-- <div class="col-lg-6 mb-3">
                                                     <div class="form-group">
