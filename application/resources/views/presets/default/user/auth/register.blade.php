@@ -110,8 +110,8 @@ $credentials = $general->socialite_credentials;
                                 <h6>или</h6>
                             </div>
                             <p>
-                                Войдите через учётную запись нейроскрайба
-                            </p>
+        Войдите через учётную запись нейроскрайба
+    </p>
                             <ul class="login-with">
                                 <li class="single-button">
                                     <a href="{{ route('user.neurologin') }}">
@@ -168,7 +168,7 @@ $credentials = $general->socialite_credentials;
         $('input[name=country_code]').val($('select[name=country] :selected').data('code'));
         $('.mobile-code').text('+' + $('select[name=country] :selected').data('mobile_code'));
 
-        @if($general - > secure_password)
+        @if($general->secure_password)
         $('input[name=password]').on('input', function() {
             secure_password($(this));
         });
@@ -183,8 +183,7 @@ $credentials = $general->socialite_credentials;
         @endif
 
         $('.checkUser').on('focusout', function(e) {
-            var url = '{{ route('
-            user.checkUser ') }}';
+            var url = '{{ route('user.checkUser') }}';
             var value = $(this).val();
             var token = '{{ csrf_token() }}';
             if ($(this).attr('name') == 'mobile') {
