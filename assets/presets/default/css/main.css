@@ -13237,11 +13237,13 @@ li.login-registration-list__item .social-list__item .social-list__link i {
 
 .info-bottom{
   display: flex;
-  gap: 15px;
+  gap: 5px;
+  justify-content: center;
   flex-wrap: wrap;
   margin: 20px 0;
 }
 
-.info-bottom a{
-  color: #0d6efd;
+.info-bottom a h6{
+  color: #0d6efd !important;
+  font-size: 9px !important;
 }

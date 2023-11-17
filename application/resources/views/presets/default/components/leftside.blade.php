@@ -97,7 +97,7 @@
                 </div>
             </div>
             <!-- dark mode /-->
-            <div class="info-bottom">
+            <div class="info-bottom ps-5">
                 @if (@$cookie_policy->data_values?->status == 1)
                 <a href="{{ route('cookie.policy') }}">
                     <h6 class="menu-name {{ menuActive('cookie.policy') }}">@lang('Cookie')</h6>
