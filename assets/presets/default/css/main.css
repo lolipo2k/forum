@@ -13234,3 +13234,14 @@ li.login-registration-list__item .social-list__item .social-list__link i {
 .neuroscribe-content__info{
   color: #7e838f;
 }
+
+.info-bottom{
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.info-bottom a{
+  color: #0d6efd;
+}

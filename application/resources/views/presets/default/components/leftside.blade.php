@@ -17,7 +17,7 @@
                         <i class="fa-solid fa-toolbox"></i>
                         <h6 class="menu-name {{ menuActive('post.job') }}">@lang('Jobs')</h6>
                     </a>
-                   
+
                 </div>
             </div>
             <!-- menu-item-wraper / -->
@@ -56,10 +56,10 @@
             <!-- latest-topics-menu / -->
 
             <!-- others-menu -->
-            <div class="others-menu">
+          <!--  <div class="others-menu">
                 <div class="others-item-wraper">
                     <h6 class="menu-title">@lang('Others')</h6>
-                    
+
                     <div class="others-item-list">
 
                         @if (@$cookie_policy->data_values?->status == 1)
@@ -79,7 +79,7 @@
                         @endforeach
                     @endif
                 </div>
-            </div>
+            </div> -->
             <!-- others-menu /-->
             <!-- dark mode -->
             <div class="mode-option">
@@ -97,6 +97,20 @@
                 </div>
             </div>
             <!-- dark mode /-->
+            <div class="info-bottom">
+                @if (@$cookie_policy->data_values?->status == 1)
+                <a href="{{ route('cookie.policy') }}">
+                    <h6 class="menu-name {{ menuActive('cookie.policy') }}">@lang('Cookie')</h6>
+                </a>
+                @endif
+                @if (@$general->agree == 1)
+                @foreach ($policy_elements as $element)
+                <a href="{{ route('policy.pages', [slug($element->data_values?->title), $element->id]) }}">
+                    <h6 class="menu-name {{ (url()->current() == route('policy.pages', [slug($element->data_values?->title), $element->id])) ? 'active' : '' }}">{{ $element->data_values?->title }}</h6>
+                </a>
+                @endforeach
+                @endif
+            </div>
             <div class="copy-right-text text-center ps-5">
                 <p class="bottom-footer-text"> &copy; @lang('Copyright') {{now()->year}} @lang('. All rights reserved.')</p>
             </div>

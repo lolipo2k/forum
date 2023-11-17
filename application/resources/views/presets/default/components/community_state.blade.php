@@ -1,4 +1,4 @@
-<div class="community-state-box">
+<!--<div class="community-state-box">
     <h5>@lang('Community State')</h5>
     <div class="community-item-wraper">
         <div class="community-item">
@@ -22,4 +22,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

@@ -19,7 +19,7 @@
                         @endif
                     </a>
 
-                 <!--   <a href="{{ route('user.price.plan.index') }}" class="menu-item">
+                    <!--   <a href="{{ route('user.price.plan.index') }}" class="menu-item">
                         <span class="icon"><i class="fa-solid fa-award"></i></span>
                         <h6 class="text {{ menuActive('user.price.plan.index') }}">@lang('Price Plan')</h6>
                     </a>
@@ -105,7 +105,7 @@
             <!-- latest-topics-menu / -->
 
             <!-- others-menu -->
-            <div class="others-menu">
+            <!-- <div class="others-menu">
                 <div class="others-item-wraper">
                     <h6 class="menu-title">@lang('Others')</h6>
                     <div class="others-item-list">
@@ -130,7 +130,7 @@
                     @endforeach
                     @endif
                 </div>
-            </div>
+            </div> -->
             <!-- others-menu /-->
             <!-- dark mode -->
             <div class="mode-option">
@@ -148,7 +148,20 @@
                 </div>
             </div>
             <!-- dark mode /-->
-
+            <div class="info-bottom">
+                @if (@$cookie_policy->data_values?->status == 1)
+                <a href="{{ route('cookie.policy') }}">
+                    <h6 class="menu-name {{ menuActive('cookie.policy') }}">@lang('Cookie')</h6>
+                </a>
+                @endif
+                @if (@$general->agree == 1)
+                @foreach ($policy_elements as $element)
+                <a href="{{ route('policy.pages', [slug($element->data_values?->title), $element->id]) }}">
+                    <h6 class="menu-name {{ (url()->current() == route('policy.pages', [slug($element->data_values?->title), $element->id])) ? 'active' : '' }}">{{ $element->data_values?->title }}</h6>
+                </a>
+                @endforeach
+                @endif
+            </div>
             <div class="copy-right-text text-center ps-5 pb-5">
                 <p class="bottom-footer-text"> &copy; @lang('Copyright') {{ now()->year }} @lang('. All rights reserved.') </p>
             </div>
