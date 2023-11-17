@@ -314,7 +314,7 @@
                         $(`.${response.type}Exist`).text(`${response.type} уже существует`);
                         $('#existModalCenter').modal('show');
                     } else if (response.data != false) {
-                        let name = (response.type == "username") ? "имя пользователя" : response.type;
+                        let name = (response.type == "username") ? "такое имя" : response.type;
                         $(`.${response.type}Exist`).text(`${name} уже существует`);
                     } else {
                         $(`.${response.type}Exist`).text('');

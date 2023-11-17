@@ -90,7 +90,7 @@ $credentials = $general->socialite_credentials;
                                 @if ($general->agree)
                                 <div class="form-group">
                                     <input class="form-check-input" type="checkbox" id="agree" @checked(old('agree')) name="agree" required>
-                                    <label for="agree">@lang('I agree with Licences Info,') @foreach ($policyPages as $policy)
+                                    <label for="agree">Я согласен @foreach ($policyPages as $policy)
                                         <a class="text--base" href="{{ route('policy.pages', [slug($policy->data_values->title), $policy->id]) }}">{{ __($policy->data_values->title) }}</a>
                                         @if (!$loop->last)
                                         ,
@@ -100,7 +100,7 @@ $credentials = $general->socialite_credentials;
                                 </div>
                                 @endif
                             </div>
-                            <button class="btn btn--base wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">@lang('Submit')</button>
+                            <button class="btn btn--base wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">Регистрация</button>
                         </form>
 
 
@@ -109,6 +109,9 @@ $credentials = $general->socialite_credentials;
                             <div class="text">
                                 <h6>или</h6>
                             </div>
+                            <p>
+                                Войдите через учётную запись нейроскрайба
+                            </p>
                             <ul class="login-with">
                                 <li class="single-button">
                                     <a href="{{ route('user.neurologin') }}">
@@ -165,7 +168,7 @@ $credentials = $general->socialite_credentials;
         $('input[name=country_code]').val($('select[name=country] :selected').data('code'));
         $('.mobile-code').text('+' + $('select[name=country] :selected').data('mobile_code'));
 
-        @if($general->secure_password)
+        @if($general - > secure_password)
         $('input[name=password]').on('input', function() {
             secure_password($(this));
         });
@@ -180,7 +183,8 @@ $credentials = $general->socialite_credentials;
         @endif
 
         $('.checkUser').on('focusout', function(e) {
-            var url = '{{ route('user.checkUser') }}';
+            var url = '{{ route('
+            user.checkUser ') }}';
             var value = $(this).val();
             var token = '{{ csrf_token() }}';
             if ($(this).attr('name') == 'mobile') {
@@ -207,7 +211,7 @@ $credentials = $general->socialite_credentials;
                     $(`.${response.type}Exist`).text(`${response.type} уже существует`);
                     $('#existModalCenter').modal('show');
                 } else if (response.data != false) {
-                    let name = (response.type == "username") ? "имя пользователя" : response.type;
+                    let name = (response.type == "username") ? "такое имя" : response.type;
                     $(`.${response.type}Exist`).text(`${name} уже существует`);
                 } else {
                     $(`.${response.type}Exist`).text('');
