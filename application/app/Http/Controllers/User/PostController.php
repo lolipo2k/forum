@@ -24,7 +24,7 @@ class PostController extends Controller
         $request->validate(
             [
                 'post_type' => 'required|in:text,job',
-                'title' => 'required|regex:/^[a-z\-_\s]+$/i',
+                'title' => 'required',
                 'category' => 'required_if:post_type,text',
                 'salary' => 'required_if:post_type,job',
                 'content' => 'required|string',
