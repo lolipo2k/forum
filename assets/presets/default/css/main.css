@@ -9959,6 +9959,7 @@ select.form-control.form--control:has(option) ~ .form--label {
 /*================ Top Header Start Here ================*/
 .header-main-area {
   position: relative;
+  z-index: 10;
   top: 0;
   left: 0;
   right: 0;

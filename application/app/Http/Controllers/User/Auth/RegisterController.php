@@ -98,11 +98,11 @@ class RegisterController extends Controller
             return back()->withNotify($notify);
         }
 
-        $exist = User::where('mobile', $request->mobile_code . $request->mobile)->first();
-        if ($exist) {
-            $notify[] = ['error', 'Номер мобильного телефона уже существует'];
-            return back()->withNotify($notify)->withInput();
-        }
+       // $exist = User::where('mobile', $request->mobile_code . $request->mobile)->first();
+       // if ($exist) {
+       //     $notify[] = ['error', 'Номер мобильного телефона уже существует'];
+       //     return back()->withNotify($notify)->withInput();
+      //  }
 
         event(new Registered($user = $this->create($request->all())));
 
