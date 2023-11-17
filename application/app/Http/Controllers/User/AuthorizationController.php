@@ -98,7 +98,7 @@ class AuthorizationController extends Controller
             $user->ver_code = null;
             $user->ver_code_send_at = null;
             $user->save();
-            return to_route('user.home');
+            return to_route('home');
         }
         throw ValidationException::withMessages(['code' => 'Код подтверждения не совпал!']);
     }

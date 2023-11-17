@@ -12,10 +12,10 @@
 
     <div class="community-item-wraper">
         <div class="community-item">
-            <div class="item-status">
+           <!-- <div class="item-status">
                 <h5 class="count">{{ @$user?->credit }}</h5>
                 <h6 class="item-status-title">@lang('Total Credit')</h6>
-            </div>
+            </div> -->
             <div class="item-status">
                 <h5 class="count">{{ @$user?->posts->count() }}</h5>
                 <h6 class="item-status-title">@lang('Total Post')</h6>
