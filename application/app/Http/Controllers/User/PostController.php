@@ -33,7 +33,7 @@ class PostController extends Controller
                 'vacancy' => 'numeric|required_if:post_type,job',
             ],
             [
-                'required' => 'Поле :attribute обязательно для заполнения.'
+                'required' => 'Не все обязательные поля заполнены'
             ]
         );
 
