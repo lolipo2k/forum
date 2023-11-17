@@ -204,11 +204,11 @@ $credentials = $general->socialite_credentials;
             }
             $.post(url, data, function(response) {
                 if (response.data != false && response.type == 'email') {
-                    $(`.${response.type}Exist`).text(`${response.type} already exist`);
+                    $(`.${response.type}Exist`).text(`${response.type} уже существует`);
                     $('#existModalCenter').modal('show');
                 } else if (response.data != false) {
-
-                    $(`.${response.type}Exist`).text(`${response.type} already exist`);
+                    let name = (response.type == "username") ? "имя пользователя" : response.type;
+                    $(`.${response.type}Exist`).text(`${name} уже существует`);
                 } else {
                     $(`.${response.type}Exist`).text('');
                 }
