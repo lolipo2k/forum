@@ -306,7 +306,7 @@ function getFileExt($key)
 function diffForHumans($date)
 {
     $lang = session()->get('lang');
-    Carbon::setlocale($lang);
+    Carbon::setlocale('ru');
     return Carbon::parse($date)->diffForHumans();
 }
 
