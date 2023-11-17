@@ -21,16 +21,21 @@ class PostController extends Controller
 {
     public function store(Request $request)
     {
-        $request->validate([
-            'post_type' => 'required|in:text,job',
-            'title' => 'required|regex:/^[a-z\-_\s]+$/i',
-            'category' => 'required_if:post_type,text',
-            'salary' => 'required_if:post_type,job',
-            'content' => 'required|string',
-            'images.*' => ['image', new FileTypeValidate(['jpg', 'jpeg', 'png']),'max:2048'],
-            'deadline' => 'required_if:post_type,job',
-            'vacancy' => 'numeric|required_if:post_type,job',
-        ]);
+        $request->validate(
+            [
+                'post_type' => 'required|in:text,job',
+                'title' => 'required|regex:/^[a-z\-_\s]+$/i',
+                'category' => 'required_if:post_type,text',
+                'salary' => 'required_if:post_type,job',
+                'content' => 'required|string',
+                'images.*' => ['image', new FileTypeValidate(['jpg', 'jpeg', 'png']), 'max:2048'],
+                'deadline' => 'required_if:post_type,job',
+                'vacancy' => 'numeric|required_if:post_type,job',
+            ],
+            [
+                'required' => 'Поле :attribute обязательно для заполнения.'
+            ]
+        );
 
         if ($request->category) {
             $findCategory = Category::where('id', $request->category)->first();
@@ -73,8 +78,8 @@ class PostController extends Controller
                         $post_image = new PostImage();
                         $post_image->post_id = $post->id;
                         $post_image->user_id = auth()->id();
-                        $post_image->path = '/'.date("Y").'/'.date("m").'/';
-                        $post_image->image = fileUploader($image, getFilePath('posts').$post_image->path, getFileSize('posts'));
+                        $post_image->path = '/' . date("Y") . '/' . date("m") . '/';
+                        $post_image->image = fileUploader($image, getFilePath('posts') . $post_image->path, getFileSize('posts'));
                         $post_image->save();
                     }
                 } catch (\Exception $exp) {
@@ -110,7 +115,7 @@ class PostController extends Controller
             'category' => 'required_if:post_type,text',
             'salary' => 'required_if:post_type,job',
             'content' => 'required|string',
-            'images.*' => ['image', new FileTypeValidate(['jpg', 'jpeg', 'png']),'max:2048'],
+            'images.*' => ['image', new FileTypeValidate(['jpg', 'jpeg', 'png']), 'max:2048'],
             'deadline' => 'required_if:post_type,job',
             'vacancy' => 'numeric|required_if:post_type,job',
         ]);
@@ -137,8 +142,8 @@ class PostController extends Controller
                         $post_image = new PostImage();
                         $post_image->post_id = $post->id;
                         $post_image->user_id = auth()->id();
-                        $post_image->path = '/'.date("Y").'/'.date("m").'/';
-                        $post_image->image = fileUploader($image, getFilePath('posts').$post_image->path, getFileSize('posts'));
+                        $post_image->path = '/' . date("Y") . '/' . date("m") . '/';
+                        $post_image->image = fileUploader($image, getFilePath('posts') . $post_image->path, getFileSize('posts'));
                         $post_image->save();
                     }
                 } catch (\Exception $exp) {
