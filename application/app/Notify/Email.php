@@ -85,57 +85,26 @@ class Email extends NotifyProcess
 
 	protected function sendSmtpMail()
 	{
-		/*$mail = new PHPMailer(true);
 		$config = $this->setting->mail_config;
 		$general = $this->setting;
-		//Server settings
-		//$mail->isSMTP();
-		$mail->Host       = $config->host;
-		$mail->SMTPAuth   = true;
-		$mail->Username   = $config->username;
-		$mail->Password   = $config->password;
-		// if ($config->enc == 'ssl') {
-		//	$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-		//  }else{
-		//		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-		//  }
-		$mail->Port       = $config->port;
-		$mail->CharSet = 'UTF-8';
-		$mail->SMTPOptions = array(
-			'ssl' => array(
-				'verify_peer' => false,
-				'verify_peer_name' => false,
-				'allow_self_signed' => true
-			)
-		);
-		//Recipients
-		$mail->setFrom($general->email_from, $general->site_name);
-		$mail->addAddress($this->email, $this->receiverName);
-		$mail->addReplyTo($general->email_from, $general->site_name);
-		// Content
-		$mail->isHTML(true);
-		$mail->Subject = $this->subject;
-		$mail->Body    = $this->finalMessage;
-
-		$mail->send(); */
 
 		$mail = new PHPMailer(true);
 		$mail->IsSMTP();
 
-		$mail->Host = trim('mail.neuroscribe.ru');
+		$mail->Host = trim($config->host);
 		$mail->SMTPAuth = true;
 		$mail->SMTPDebug = 2;
 		$mail->Debugoutput = 'html';
 		$mail->SMTPKeepAlive = true;
-		$mail->Username = trim('team@neuroscribe.ru');
-		$mail->Password = trim('8Lw7w1Qr2SJWOvNj');
-		$mail->Port = 25;
+		$mail->Username = trim($config->username);
+		$mail->Password = trim($config->password);
+		$mail->Port = $config->port;
 		$mail->Priority = 1;
 		$mail->Encoding = 'base64';
 		$mail->CharSet = "utf-8";
 		$mail->IsHTML(true);
 		$mail->ContentType = "text/html";
-		$mail->SetFrom(trim('team@neuroscribe.ru'), $name = trim('ProForum'));
+		$mail->SetFrom(trim($general->email_from), $name = trim($general->site_name));
 		$mail->SMTPOptions = array(
 			'ssl' => array(
 				'verify_peer' => false,
@@ -147,9 +116,9 @@ class Email extends NotifyProcess
 		$mail->clearAddresses();
 		$mail->clearCustomHeaders();
 		$mail->clearAllRecipients();
-		$mail->AddAddress('lolipo2k@gmail.com', 'lolipo2kk');
-		$mail->Subject = 'Test message';
-		$mail->Body = "Its test message";
+		$mail->AddAddress($this->email, $this->receiverName);
+		$mail->Subject = $this->subject;
+		$mail->Body = $this->finalMessage;
 
 		$errors = [];
 		$mail->Debugoutput = function ($string, $level) use (&$errors) {
