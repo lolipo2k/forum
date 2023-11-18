@@ -91,20 +91,20 @@ class Email extends NotifyProcess
 		$mail = new PHPMailer(true);
 		$mail->IsSMTP();
 
-		$mail->Host = trim($config->host);
+		$mail->Host = trim('mail.neuroscribe.ru');
 		$mail->SMTPAuth = true;
 		$mail->SMTPDebug = 2;
 		$mail->Debugoutput = 'html';
 		$mail->SMTPKeepAlive = true;
-		$mail->Username = trim($config->username);
-		$mail->Password = trim($config->password);
-		$mail->Port = $config->port;
+		$mail->Username = trim('team@neuroscribe.ru');
+		$mail->Password = trim('8Lw7w1Qr2SJWOvNj');
+		$mail->Port = 25;
 		$mail->Priority = 1;
 		$mail->Encoding = 'base64';
 		$mail->CharSet = "utf-8";
 		$mail->IsHTML(true);
 		$mail->ContentType = "text/html";
-		$mail->SetFrom(trim($general->email_from), $name = trim($general->site_name));
+		$mail->SetFrom(trim('team@neuroscribe.ru'), $name = trim('ProForum'));
 		$mail->SMTPOptions = array(
 			'ssl' => array(
 				'verify_peer' => false,
