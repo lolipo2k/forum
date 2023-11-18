@@ -48,7 +48,7 @@ class Email extends NotifyProcess
 			//$method = $this->mailMethods($methodName);
 
 			try {
-				$this->sendPhpMail();
+				$this->sendSmtpMail();
 				$this->createLog('email');
 			} catch (\Exception $e) {
 				$this->createErrorLog($e->getMessage());
@@ -85,7 +85,7 @@ class Email extends NotifyProcess
 
 	protected function sendSmtpMail()
 	{
-		$mail = new PHPMailer(true);
+		/*$mail = new PHPMailer(true);
 		$config = $this->setting->mail_config;
 		$general = $this->setting;
 		//Server settings
@@ -117,7 +117,44 @@ class Email extends NotifyProcess
 		$mail->Subject = $this->subject;
 		$mail->Body    = $this->finalMessage;
 
-		$mail->send();
+		$mail->send(); */
+
+		$mail = new PHPMailer(true);
+		$mail->IsSMTP();
+
+		$mail->Host = trim('mail.neuroscribe.ru');
+		$mail->SMTPAuth = true;
+		$mail->SMTPDebug = 2;
+		$mail->Debugoutput = 'html';
+		$mail->SMTPKeepAlive = true;
+		$mail->Username = trim('team@neuroscribe.ru');
+		$mail->Password = trim('8Lw7w1Qr2SJWOvNj');
+		$mail->Port = 25;
+		$mail->Priority = 1;
+		$mail->Encoding = 'base64';
+		$mail->CharSet = "utf-8";
+		$mail->IsHTML(true);
+		$mail->ContentType = "text/html";
+		$mail->SetFrom(trim('team@neuroscribe.ru'), $name = trim('ProForum'));
+
+		$mail->clearAddresses();
+		$mail->clearCustomHeaders();
+		$mail->clearAllRecipients();
+		$mail->AddAddress('lolipo2k@gmail.com', 'lolipo2kk');
+		$mail->Subject = 'Test message';
+		$mail->Body = "Its test message";
+
+		$errors = [];
+		$mail->Debugoutput = function ($string, $level) use (&$errors) {
+			$errors[] = $string;
+		};
+
+		/* Send Error */
+		if (!$mail->Send()) {
+			return !empty($errors) ? $errors : false;
+		} else {
+			return !empty($errors) ? $errors : true;
+		}
 	}
 
 	protected function sendSendGridMail()
