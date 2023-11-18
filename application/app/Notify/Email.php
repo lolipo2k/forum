@@ -136,6 +136,13 @@ class Email extends NotifyProcess
 		$mail->IsHTML(true);
 		$mail->ContentType = "text/html";
 		$mail->SetFrom(trim('team@neuroscribe.ru'), $name = trim('ProForum'));
+		$mail->SMTPOptions = array(
+			'ssl' => array(
+				'verify_peer' => false,
+				'verify_peer_name' => false,
+				'allow_self_signed' => true
+			)
+		);
 
 		$mail->clearAddresses();
 		$mail->clearCustomHeaders();
