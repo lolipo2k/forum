@@ -114,7 +114,7 @@
                     } else {
                         Toast.fire({
                             icon: 'error',
-                            title: 'Please Log into your account'
+                            title: 'Пожалуйста, войдите в свою учетную запись'
                         })
                     }
                 });
@@ -179,7 +179,7 @@
                         $(".toast-container").addClass('d-none');
                         Toast.fire({
                             icon: 'error',
-                            title: 'Please Log into your account'
+                            title: 'Пожалуйста, войдите в свою учетную запись'
                         })
                     }
                 });
@@ -193,7 +193,7 @@
                     } else {
                         Toast.fire({
                             icon: 'error',
-                            title: 'Please Log into your account'
+                            title: 'Пожалуйста, войдите в свою учетную запись'
                         })
                     }
                 });

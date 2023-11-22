@@ -46,7 +46,7 @@ class CommentController extends Controller
             $userNotification->user_to = $post->user->id;
             $userNotification->title = auth()->user()->fullname . ' прокомментировал ваше сообщение ' . $post->title;
             $userNotification->read_status = 0;
-            $userNotification->type = 'comment';
+            $userNotification->type = 'Комментарий';
             $userNotification->click_url = url('/') . '/post-details/' . $post->id;
             $userNotification->save();
 

@@ -195,9 +195,9 @@ class PostController extends Controller
         $userNotification = new UserNotification();
         $userNotification->user_from = auth()->id();
         $userNotification->user_to = $post->user->id;
-        $userNotification->title = (!$exist_vote) ? auth()->user()->fullname . ' like your post ' . $post->title : auth()->user()->fullname . ' Unlike your post ' . $post->title;
+        $userNotification->title = (!$exist_vote) ? auth()->user()->fullname . ' оценил ваш пост ' . $post->title : auth()->user()->fullname . ' убрал оценку с вашего поста ' . $post->title;
         $userNotification->read_status = 0;
-        $userNotification->type = 'post-vote';
+        $userNotification->type = 'Пост оценили';
         $userNotification->click_url = url('/') . '/post-details/' . $post->id;
         $userNotification->save();
 

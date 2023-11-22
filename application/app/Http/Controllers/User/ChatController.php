@@ -42,7 +42,7 @@ class ChatController extends Controller
         $userNotification->user_to = $chat->receiver_id;
         $userNotification->title = auth()->user()->fullname . ' сообщение тебе ' . $chat->message;
         $userNotification->read_status = 0;
-        $userNotification->type = 'message';
+        $userNotification->type = 'Сообщение';
         $userNotification->click_url = url('/') . '/user-profile/' . auth()->id();
         $userNotification->save();
 
