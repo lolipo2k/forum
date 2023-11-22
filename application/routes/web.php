@@ -43,13 +43,13 @@ Route::controller('SiteController')->group(function () {
 
     Route::get('/', 'index')->name('home');
 
-    Route::get('/post-details/{id}', 'postDetails')->name('post.details');
+    Route::get('/post-details/{slug}', 'postDetails')->name('post.details');
     Route::get('/post/{category_name}/{id}', 'categoryPost')->name('post.category');
     Route::get('/job/post', 'jobPost')->name('post.job');
     Route::get('/popular/post', 'popularPost')->name('post.popular');
     Route::get('/user-profile/{user}', 'user_profile')->name('user.profile.details');
     Route::post('/search', 'User\PostController@search')->name("post.search");
-    
+
     //Guest User  Route
 
     Route::middleware('auth')->group(function () {

@@ -73,7 +73,7 @@ class SiteController extends Controller
         return view($this->activeTemplate . 'save-post', compact('pageTitle', 'posts'));
     }
 
-    public function postDetails($id)
+    public function postDetails($slug)
     {
         $pageTitle = 'Детали';
         $post = Post::with(['user', 'comments', 'comments.votes', 'comments.user', 'votes', 'bookmarks','images'])->findOrFail($id);
