@@ -68,7 +68,7 @@
                 <li>
                     <a href="{{ route('save.post') }}">
 
-                        @lang('Bookmarks')
+                        Сохранённые посты
                     </a>
                 </li>
                 <li>
@@ -81,7 +81,7 @@
                         @endif
                     </a>
                 </li>
-
+                <!--
                 <li>
                     <a href="{{ route('user.price.plan.index') }}">
 
@@ -102,7 +102,7 @@
                     <a href="{{ route('user.deposit.history') }}">
                         @lang('Deposit-Log')
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href="{{ route('ticket') }}">
                         @lang('Support Ticket')
