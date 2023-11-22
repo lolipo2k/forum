@@ -81,7 +81,8 @@ class RegisterController extends Controller
                 'agree' => $agree
             ],
             [
-                'username.min' => 'Логин должен состоять минимум из 4-х символов'
+                'username.min' => 'Логин должен состоять минимум из 4-х символов',
+                'password.min' => 'Пароль должен состоять минимум из 6 символов'
             ]
         );
         return $validate;
