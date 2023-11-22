@@ -39,6 +39,10 @@
                         <h6 class="text {{ menuActive('user.deposit.history') }}">@lang('Deposit-Log')</h6>
                     </a> -->
 
+                <a href="{{ route('save.post') }}" class="menu-item">
+                <span class="icon"><i class="fa-regular fa-bookmark"></i></span>
+                        <h6 class="text">Сохранённые публикации</h6>
+                    </a>
                     <a href="{{ route('user.profile.setting') }}" class="menu-item">
                         <span class="icon"><i class="fa-solid fa-screwdriver-wrench"></i></span>
                         <h6 class="text {{ menuActive('user.profile.setting') }}">@lang('Profile Setting')</h6>
