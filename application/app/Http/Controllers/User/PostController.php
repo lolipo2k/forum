@@ -198,7 +198,7 @@ class PostController extends Controller
         $userNotification->title = (!$exist_vote) ? auth()->user()->fullname . ' оценил ваш пост ' . $post->title : auth()->user()->fullname . ' поставил негативную оценку на ваш пост ' . $post->title;
         $userNotification->read_status = 0;
         $userNotification->type = 'Пост оценили';
-        $userNotification->click_url = url('/') . '/post-details/' . $post->id;
+        $userNotification->click_url = url('/') . '/post-details/' . slug($post->title . '-' . $post->id);
         $userNotification->save();
 
         // credit plus when user upvote his post
@@ -323,10 +323,10 @@ class PostController extends Controller
         $userNotification = new UserNotification();
         $userNotification->user_from = auth()->id();
         $userNotification->user_to = $post->user->id;
-        $userNotification->title = auth()->user()->fullname . ' report your post ' . $post->title;
+        $userNotification->title = auth()->user()->fullname . ' пожаловался на ваш пост ' . $post->title;
         $userNotification->read_status = 0;
         $userNotification->type = 'post-report';
-        $userNotification->click_url = url('/') . '/post-details/' . $post->id;
+        $userNotification->click_url = url('/') . '/post-details/' . slug($post->title . '-' . $post->id);
         $userNotification->save();
 
         $data = [

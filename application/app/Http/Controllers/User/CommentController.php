@@ -47,7 +47,7 @@ class CommentController extends Controller
             $userNotification->title = auth()->user()->fullname . ' прокомментировал ваше сообщение ' . $post->title;
             $userNotification->read_status = 0;
             $userNotification->type = 'Комментарий';
-            $userNotification->click_url = url('/') . '/post-details/' . $post->id;
+            $userNotification->click_url = url('/') . '/post-details/' . slug($post->title . '-' . $post->id);
             $userNotification->save();
 
             $data = [
@@ -101,7 +101,7 @@ class CommentController extends Controller
             $userNotification->title = auth()->user()->fullname . ' ответил на ваш комментарий ' . $commentNotify->comment;
             $userNotification->read_status = 0;
             $userNotification->type = 'comment-reply';
-            $userNotification->click_url = url('/') . '/post-details/' . $post->id;
+            $userNotification->click_url = url('/') . '/post-details/' . slug($post->title . '-' . $post->id);
             $userNotification->save();
 
             $data = [
