@@ -248,23 +248,13 @@
                                                                 <ul>
                                                                     <li>
                                                                         <a target="_blank" class="report_button"
-                                                                            href="https://www.facebook.com/share.php?u={{ Request::url() }}&title={{ slug(@$post->title) }}">
-                                                                            <i class="fa-brands fa-facebook-f"></i>
+                                                                            href="https://vk.com/share.php?url={{ Request::url() }}&title={{ slug(@$post->title) }}">
                                                                             <span>@lang('Facebook')</span>
                                                                         </a>
                                                                     </li>
                                                                     <li>
                                                                         <a target="_blank" class="report_button"
-                                                                            href="https://www.linkedin.com/shareArticle?mini=true&url={{ Request::url() }}&title={{ slug(@$post->title) }}&source=behands">
-                                                                            <i class="fa-brands fa-linkedin-in"></i>
-                                                                            <span>@lang('Linkedin')</span>
-                                                                        </a>
-
-                                                                    </li>
-                                                                    <li>
-                                                                        <a target="_blank" class="report_button"
-                                                                            href="https://twitter.com/intent/tweet?status={{ slug(@$post->title) }}+{{ Request::url() }}">
-                                                                            <i class="fa-brands fa-twitter"></i>
+                                                                            href="https://telegram.me/share/url?url={{ Request::url() }}&text={{ slug(@$post->title) }}">
                                                                             <span>@lang('Twitter')</span>
                                                                         </a>
                                                                     </li>
@@ -281,15 +271,15 @@
                                                     class="bookmark-button
                                                     @if (auth()->user()) @if (
                                                         @$post->bookmarks?->first()->user_id == auth()->user()->id &&
-                                                            @$post->bookmarks?->first()->type == auth()->user()->type) 
+                                                            @$post->bookmarks?->first()->type == auth()->user()->type)
                                                             active-bookmark @endif
                                                     @endif"
                                                     data-post-id="{{ $post->id }}" type="button">
                                                     <i
-                                                        class="fa-regular fa-bookmark 
+                                                        class="fa-regular fa-bookmark
                                                         @if (auth()->user()) @if (
                                                             @$post->bookmarks?->first()->user_id == auth()->user()->id &&
-                                                                @$post->bookmarks->first()->type == auth()->user()->type) 
+                                                                @$post->bookmarks->first()->type == auth()->user()->type)
                                                                 fa-solid @endif
                                                         @endif">
                                                     </i>
@@ -512,7 +502,7 @@
                     } else {
                         Toast.fire({
                             icon: 'error',
-                            title: 'Please Log into your account'
+                            title: 'Пожалуйста, войдите в свою учетную запись'
                         })
                     }
                 })
@@ -551,7 +541,7 @@
 
                         Toast.fire({
                             icon: 'error',
-                            title: 'Please Log into your account'
+                            title: 'Пожалуйста, войдите в свою учетную запись'
                         })
                     }
                 })
@@ -618,7 +608,7 @@
                         $(".toast-container").addClass('d-none');
                         Toast.fire({
                             icon: 'error',
-                            title: "Please Log into your account."
+                            title: "Пожалуйста, войдите в свою учетную запись."
                         })
                     }
 
@@ -635,13 +625,13 @@
                     } else {
                         Toast.fire({
                             icon: 'error',
-                            title: 'Please Log into your account'
+                            title: 'Пожалуйста, войдите в свою учетную запись'
                         })
                     }
 
                 });
 
-                // report post 
+                // report post
                 $("form#post_report_form").on('submit', function(event) {
 
                     event.preventDefault();
@@ -691,13 +681,13 @@
                     } else {
                         Toast.fire({
                             icon: 'error',
-                            title: 'Please Log into your account'
+                            title: 'Пожалуйста, войдите в свою учетную запись'
                         })
                     }
 
                 });
 
-                // report comment 
+                // report comment
                 $("form#comment_report_form").on('submit', function(event) {
                     event.preventDefault();
                     var reason = $(".comment_reason").val();
@@ -816,9 +806,9 @@
                     data: data,
                     success: function(data) {
                         var SingleCommentReply = $(object).closest(".single-comment-replay");
-                        SingleCommentReply.before(` 
-                                <div class="single-comment"> 
-                                    ${data.html} 
+                        SingleCommentReply.before(`
+                                <div class="single-comment">
+                                    ${data.html}
                                 </div>
                             `);
                         $(object).val('');
@@ -856,7 +846,7 @@
             } else {
                 Toast.fire({
                     icon: 'error',
-                    title: 'Please Log into your account'
+                    title: 'Пожалуйста, войдите в свою учетную запись'
                 })
             }
 
@@ -1003,7 +993,7 @@
         function replyCommentCountCreate(allNestedComment) {
             $.each(allNestedComment.parents('.nested-comment'), function(index,
                 value) {
-                // reply-comment (comment reply) count create 
+                // reply-comment (comment reply) count create
 
                 $(value).children('.comment-text').children(
                     '.comment-card-footer').children(
@@ -1016,7 +1006,7 @@
             });
 
 
-            // single-comment (comment reply) count create 
+            // single-comment (comment reply) count create
             allNestedComment.parents(
                     '.single-comment').children('.comment-text')
                 .children('.comment-card-footer').children('.user-actn')
@@ -1032,7 +1022,7 @@
         function replyCommentCountDelete(thisTag, data, allNestedComment) {
             $.each(allNestedComment, function(index,
                 value) {
-                // reply-comment (comment reply) count delete 
+                // reply-comment (comment reply) count delete
                 $(value).children('.comment-text').children(
                     '.comment-card-footer').children(
                     '.user-actn').find(
@@ -1044,7 +1034,7 @@
                     ) - data.commentDeleteCount + " " +
                     "Reply");
             });
-            // single-comment (comment reply) count delete 
+            // single-comment (comment reply) count delete
             thisTag.closest(
                     '.comment-card-footer').parents(
                     '.single-comment').children('.comment-text')
@@ -1114,7 +1104,7 @@
             } else {
                 Toast.fire({
                     icon: 'error',
-                    title: 'Please Log into your account'
+                    title: 'Пожалуйста, войдите в свою учетную запись'
                 })
             }
 

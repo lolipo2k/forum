@@ -106,30 +106,20 @@
                                 <span> @lang('Share')</span>
                             </button>
                             <div class="actn-dropdown">
-                                <ul>
-                                    <li>
-                                        <a target="_blank" class="report_button"
-                                            href="https://www.facebook.com/share.php?u={{ Request::url() }}&title={{ slug(@$post->title) }}">
-                                            <i class="fa-brands fa-facebook-f"></i>
-                                            <span class="ms-3">@lang('Facebook')</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a target="_blank" class="report_button"
-                                            href="https://www.linkedin.com/shareArticle?mini=true&url={{ Request::url() }}&title={{ slug(@$post->title) }}&source=behands">
-                                            <i class="fa-brands fa-linkedin-in"></i>
-                                            <span class="ms-3">@lang('Linkedin')</span>
-                                        </a>
-
-                                    </li>
-                                    <li class="report_button">
-                                        <a target="_blank" class="report_button"
-                                            href="https://twitter.com/intent/tweet?status={{ slug(@$post->title) }}+{{ Request::url() }}">
-                                            <i class="fa-brands fa-twitter"></i>
-                                            <span class="ms-3">@lang('Twitter')</span>
-                                        </a>
-                                    </li>
-                                </ul>
+                            <ul>
+                                                                    <li>
+                                                                        <a target="_blank" class="report_button"
+                                                                            href="https://vk.com/share.php?url={{ Request::url() }}&title={{ slug(@$post->title) }}">
+                                                                            <span>@lang('Facebook')</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a target="_blank" class="report_button"
+                                                                            href="https://telegram.me/share/url?url={{ Request::url() }}&text={{ slug(@$post->title) }}">
+                                                                            <span>@lang('Twitter')</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
 
                             </div>
                         </div>
