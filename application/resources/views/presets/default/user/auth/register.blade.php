@@ -88,7 +88,7 @@ $credentials = $general->socialite_credentials;
                             </div>
                             <div class="mb-3 form--check wow animate__animated animate__fadeInUp" data-wow-delay="0.9s">
                                 @if ($general->agree)
-                                <div class="form-group">
+                                <div class="form-group checkbox-group">
                                     <input class="form-check-input" type="checkbox" id="agree" @checked(old('agree')) name="agree" required>
                                     <label for="agree">Я согласен @foreach ($policyPages as $policy)
                                         <a class="text--base" href="{{ route('policy.pages', [slug($policy->data_values->title), $policy->id]) }}">{{ __($policy->data_values->title) }}</a>

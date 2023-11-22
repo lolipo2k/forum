@@ -71,13 +71,19 @@ class RegisterController extends Controller
         $countryCodes = implode(',', array_keys($countryData));
         $mobileCodes = implode(',', array_column($countryData, 'dial_code'));
         $countries = implode(',', array_column($countryData, 'country'));
-        $validate = Validator::make($data, [
-            'email' => 'required|string|email|unique:users',
-            'password' => ['required', 'confirmed', $passwordValidation],
-            'username' => 'required|unique:users|min:6',
-            'captcha' => 'sometimes|required',
-            'agree' => $agree
-        ]);
+        $validate = Validator::make(
+            $data,
+            [
+                'email' => 'required|string|email|unique:users',
+                'password' => ['required', 'confirmed', $passwordValidation],
+                'username' => 'required|unique:users|min:4',
+                'captcha' => 'sometimes|required',
+                'agree' => $agree
+            ],
+            [
+                'username.min' => 'Логин должен состоять минимум из 4-х символов'
+            ]
+        );
         return $validate;
     }
 
@@ -98,11 +104,11 @@ class RegisterController extends Controller
             return back()->withNotify($notify);
         }
 
-       // $exist = User::where('mobile', $request->mobile_code . $request->mobile)->first();
-       // if ($exist) {
-       //     $notify[] = ['error', 'Номер мобильного телефона уже существует'];
-       //     return back()->withNotify($notify)->withInput();
-      //  }
+        // $exist = User::where('mobile', $request->mobile_code . $request->mobile)->first();
+        // if ($exist) {
+        //     $notify[] = ['error', 'Номер мобильного телефона уже существует'];
+        //     return back()->withNotify($notify)->withInput();
+        //  }
 
         event(new Registered($user = $this->create($request->all())));
 
