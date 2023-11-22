@@ -52,7 +52,7 @@
 
                                         <td>
                                             <a title="@lang('Post details')"
-                                                href="{{ route('post.details', slug(@$item?->post?->title) . '-' . @$item?->post?->id) }}"
+                                                href="{{ route('post.details', slug(@$item?->post?->title . '-' . @$item?->post?->id)) }}"
                                                 class="btn btn-sm btn--primary">
                                                 <i class="las la-eye text--shadow"></i>
                                             </a>

@@ -12,13 +12,13 @@
                         <i class="fa-solid fa-circle"></i>
                         <p class="time-status">{{__(showDateTime($post->created_at,'d M, Y'))}}</p>
                     </div>
-                    <a href="{{route('post.details',slug(@$post->title) . '-' . $post->id)}}">
+                    <a href="{{route('post.details',slug(@$post->title . '-' . $post->id))}}">
                         <h6 class="topics-card-title">{{ __(@$post->title) }} </h6>
                     </a>
                 </div>
                 <ul>
                     <li>
-                        <a href="{{route('post.details',slug(@$post->title) . '-' . $post->id)}}"><i class="las la-comments"></i>
+                        <a href="{{route('post.details',slug(@$post->title . '-' . $post->id))}}"><i class="las la-comments"></i>
                             <p>{{number_format_short(@$post->comments?->count())}} @lang('Answers')</p>
                         </a>
                     </li>

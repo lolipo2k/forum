@@ -66,7 +66,7 @@
                 </div>
             </div>
             <div class="card-content">
-                <a href="{{ route('post.details', slug(@$post->title) . '-' . $post->id) }}">
+                <a href="{{ route('post.details', slug(@$post->title . '-' . $post->id)) }}">
                     <h6 class="card-title {{ @$post->job ? 'mb-0' : '' }}">{{ __(@$post->title) }} </h6>
                 </a>
                 @if (@$post->job)
@@ -77,7 +77,7 @@
 
                 <p class="card-sub-title wyg">{{ substr(strip_tags($post->content), 0, 190) }}
                     @if (strlen(strip_tags($post->content)) > 190)
-                        ... <a href="{{ route('post.details', slug(@$post->title) . '-' . $post->id) }}" class="btn-sm p-1"><u>
+                        ... <a href="{{ route('post.details', slug(@$post->title . '-' . $post->id)) }}" class="btn-sm p-1"><u>
                                 @lang('See More')</u></a>
                     @endif
                 </p>
@@ -85,7 +85,7 @@
             <div class="forum-cad-footer">
                 <ul class="footer-item-list">
                     <li>
-                        <a href="{{ route('post.details', slug(@$post->title) . '-' . $post->id) }}"><i class="las la-comments"></i>
+                        <a href="{{ route('post.details', slug(@$post->title . '-' . $post->id) }}"><i class="las la-comments"></i>
                             <p>{{ number_format_short(@$post->comments?->count()) }}
                                 @if ($post->text === 1)
                                     @lang('Answers')
@@ -95,7 +95,7 @@
                             </p>
                         </a>
                     </li>
-                    <li><a href="{{ route('post.details', slug(@$post->title) . '-' . $post->id) }}"><i class="las la-eye"></i>
+                    <li><a href="{{ route('post.details', slug(@$post->title . '-' . $post->id)) }}"><i class="las la-eye"></i>
                             <p>{{ number_format_short(@$post->views) }} @lang('Views')</p>
                         </a></li>
                     <li>
