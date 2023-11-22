@@ -85,7 +85,7 @@
             <div class="forum-cad-footer">
                 <ul class="footer-item-list">
                     <li>
-                        <a href="{{ route('post.details', slug(@$post->title . '-' . $post->id) }}"><i class="las la-comments"></i>
+                        <a href="{{ route('post.details', slug(@$post->title . '-' . $post->id)) }}"><i class="las la-comments"></i>
                             <p>{{ number_format_short(@$post->comments?->count()) }}
                                 @if ($post->text === 1)
                                     @lang('Answers')
