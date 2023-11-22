@@ -3929,7 +3929,7 @@ button:focus {
 
 .search-box .form--control::placeholder {
   color: hsl(var(--black) / 0.5);
-}
+ }
 
 .form-group {
   position: relative;

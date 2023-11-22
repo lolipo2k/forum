@@ -39,7 +39,7 @@
                                         </td>
 
                                         <td>
-                                            <a title="@lang('User Profile')" href="{{ route('post.details', $post->id) }}"
+                                            <a title="@lang('User Profile')" href="{{ route('post.details', slug(@$post->title)) }}"
                                                 class="btn btn-sm btn--primary">
                                                 <i class="las la-eye text--shadow"></i>
                                             </a>
