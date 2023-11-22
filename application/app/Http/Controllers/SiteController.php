@@ -31,22 +31,21 @@ class SiteController extends Controller
         }
         $pageTitle = 'Главная';
 
-        $posts = Post::with('user', 'comments', 'votes', 'bookmarks')->where('status', 1)->orderBy('id','desc')->paginate(getPaginate());
-        $categories = Category::where('status',1)->get();
+        $posts = Post::with('user', 'comments', 'votes', 'bookmarks')->where('status', 1)->orderBy('id', 'desc')->paginate(getPaginate());
+        $categories = Category::where('status', 1)->get();
 
         if ($request->ajax()) {
 
-            $view = view($this->activeTemplate . 'components.main', compact('posts','categories'))->render();
+            $view = view($this->activeTemplate . 'components.main', compact('posts', 'categories'))->render();
             return response()->json(['html' => $view]);
-
         };
-        return view($this->activeTemplate . 'home', compact('posts', 'pageTitle','categories'));
+        return view($this->activeTemplate . 'home', compact('posts', 'pageTitle', 'categories'));
     }
 
     public function textPost()
     {
         $pageTitle = 'Добавить пост';
-        $categories = Category::where('status',1)->get();
+        $categories = Category::where('status', 1)->get();
         return view($this->activeTemplate . 'add-post', compact('pageTitle', 'categories'));
     }
 
@@ -62,7 +61,7 @@ class SiteController extends Controller
             return redirect()->route('user.login');
         }
         $pageTitle = 'Сохранённые';
-        $posts = Post::with(['user', 'comments', 'votes','bookmarks'])->where('status', 1)->whereHas('bookmarks', function ($q) {
+        $posts = Post::with(['user', 'comments', 'votes', 'bookmarks'])->where('status', 1)->whereHas('bookmarks', function ($q) {
             $q->where('user_id', auth()->user()->id)->where('type', auth()->user()->type);
         })->paginate(getPaginate());
 
@@ -75,8 +74,10 @@ class SiteController extends Controller
 
     public function postDetails($slug)
     {
+        $slug_array = explode('-', $slug);
+        $id = end($slug_array);
         $pageTitle = 'Детали';
-        $post = Post::with(['user', 'comments', 'comments.votes', 'comments.user', 'votes', 'bookmarks','images'])->findOrFail($id);
+        $post = Post::with(['user', 'comments', 'comments.votes', 'comments.user', 'votes', 'bookmarks', 'images'])->findOrFail($id);
         $post->views = $post->views + 1;
         $post->save();
         return view($this->activeTemplate . 'post-details', compact('pageTitle', 'post'));
@@ -85,51 +86,51 @@ class SiteController extends Controller
     public function user_profile(Request $request, $id)
     {
         $pageTitle = '';
-        $user = User::where('id',$id)->with('posts.comments')->first();
-        $chat = Chat::with('receiver')->where('sender_id',auth()->id())->where('receiver_id',$id)->orWhere('receiver_id',auth()->id())->orWhere('sender_id',$id)->orderBy('created_at','asc')->get();
+        $user = User::where('id', $id)->with('posts.comments')->first();
+        $chat = Chat::with('receiver')->where('sender_id', auth()->id())->where('receiver_id', $id)->orWhere('receiver_id', auth()->id())->orWhere('sender_id', $id)->orderBy('created_at', 'asc')->get();
 
         $posts = Post::where('user_id', $user->id)->where('status', 1)->with('user', 'comments', 'votes', 'bookmarks')->paginate(getPaginate());
         if ($request->ajax()) {
-            $view = view($this->activeTemplate . 'components.main', compact('posts', 'pageTitle', 'user','chat'))->render();
+            $view = view($this->activeTemplate . 'components.main', compact('posts', 'pageTitle', 'user', 'chat'))->render();
             return response()->json(['html' => $view]);
         }
-        return view($this->activeTemplate . 'profile-details', compact('pageTitle', 'user', 'posts','chat'));
+        return view($this->activeTemplate . 'profile-details', compact('pageTitle', 'user', 'posts', 'chat'));
     }
 
     public function popularPost(Request $request)
     {
         $pageTitle = 'Популярные публикации';
         $posts = Post::where('status', 1)->with(['user', 'comments.user', 'votes', 'bookmarks'])->orderBy('views', 'desc')->take(100)->paginate(getPaginate());
-        $categories = Category::where('status',1)->get();
+        $categories = Category::where('status', 1)->get();
         if ($request->ajax()) {
-            $view = view($this->activeTemplate . 'components.main', compact('posts','categories', 'pageTitle'))->render();
+            $view = view($this->activeTemplate . 'components.main', compact('posts', 'categories', 'pageTitle'))->render();
             return response()->json(['html' => $view]);
         }
-        return view($this->activeTemplate . 'home', compact('pageTitle', 'posts','categories'));
+        return view($this->activeTemplate . 'home', compact('pageTitle', 'posts', 'categories'));
     }
 
     public function jobPost(Request $request)
     {
         $pageTitle = 'Должность о вакансии';
-        $categories = Category::where('status',1)->get();
-        $posts = Post::where('status', 1)->where('job', 1)->with('user', 'comments', 'votes', 'bookmarks')->orderBy('id','desc')->paginate(getPaginate());
+        $categories = Category::where('status', 1)->get();
+        $posts = Post::where('status', 1)->where('job', 1)->with('user', 'comments', 'votes', 'bookmarks')->orderBy('id', 'desc')->paginate(getPaginate());
 
         if ($request->ajax()) {
-            $view = view($this->activeTemplate . 'components.main', compact('posts','categories', 'pageTitle'))->render();
+            $view = view($this->activeTemplate . 'components.main', compact('posts', 'categories', 'pageTitle'))->render();
             return response()->json(['html' => $view]);
         }
-        return view($this->activeTemplate . 'home', compact('pageTitle', 'posts','categories'));
+        return view($this->activeTemplate . 'home', compact('pageTitle', 'posts', 'categories'));
     }
 
     public function categoryPost(Request $request, $category_name, $id)
     {
         $pageTitle = $category_name . ' ' . 'post';
-        $posts = Post::where('category_id', $id)->where('status', 1)->with('user', 'comments', 'votes','bookmarks')->paginate(getPaginate());
+        $posts = Post::where('category_id', $id)->where('status', 1)->with('user', 'comments', 'votes', 'bookmarks')->paginate(getPaginate());
         if ($request->ajax()) {
             $view = view($this->activeTemplate . 'components.main', compact('posts', 'pageTitle'))->render();
             return response()->json(['html' => $view]);
         }
-        return view($this->activeTemplate . 'category', compact('pageTitle','posts'));
+        return view($this->activeTemplate . 'category', compact('pageTitle', 'posts'));
     }
 
 
