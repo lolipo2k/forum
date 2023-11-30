@@ -1,7 +1,7 @@
 @if($seo)
-<meta name="title" Content="{{ $general->siteName(__($pageTitle)) }}">
-<meta name="description" content="{{ $seo->description }}">
-<meta name="keywords" content="{{ implode(',',$seo->keywords) }}">
+<meta name="title" Content="Форум о нейросетях: обсуждение ChatGPT, Midjourney, Stable Diffusion и других нейросетей">
+<meta name="description" content="Присоединяйтесь к форуму о нейросетях, где вы сможете обсудить последние новости и разработки в области искусственного интеллекта. Узнайте больше о таких инновационных проектах, как ChatGPT, Midjourney и Stable Diffusion, и поделитесь своими мыслями с экспертами и энтузиастами.">
+<meta name="keywords" content="нейросети, искусственный интеллект, ChatGPT, Midjourney, Stable Diffusion, форум, обсуждение, новости, разработки, эксперты, энтузиасты">
 <link rel="shortcut icon" href="{{ asset('assets/images/general/1488847961.png') }}">
 <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/images/general/apple-icon-57x57.png') }}">
 <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/images/general/apple-icon-60x60.png') }}">
