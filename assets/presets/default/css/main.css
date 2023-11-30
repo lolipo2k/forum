@@ -10334,6 +10334,18 @@ li.login-registration-list__item .social-list__item .social-list__link i {
   top: 78px;
 }
 
+@media (min-width: 1024px) and (max-width: 1430px) {
+  .leftside-bar .menu-item-wraper {
+    padding: 60px 0px 0px 0px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1025px) {
+  .leftside-bar .mode-option .mode-option-list{
+    padding: 0px 0px 0px 16px;
+  }
+}
+
 .leftside-bar .menu-item-wraper i {
   font-size: 20px;
   color: hsl(var(--base));

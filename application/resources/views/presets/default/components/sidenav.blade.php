@@ -50,11 +50,6 @@
                     @lang('Popular')
                 </a>
             </li>
-            <li>
-                <a href="{{ route('post.job') }}">
-                    @lang('Jobs')
-                </a>
-            </li>
 
             @foreach ($categories as $category)
                 <li>

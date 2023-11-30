@@ -13,10 +13,6 @@
                         <i class="fa-solid fa-star"></i>
                         <h6 class="menu-name {{ menuActive('post.popular') }}">@lang('Popular')</h6>
                     </a>
-                    <a href="{{ route('post.job') }}" class="menu-item">
-                        <i class="fa-solid fa-toolbox"></i>
-                        <h6 class="menu-name {{ menuActive('post.job') }}">@lang('Jobs')</h6>
-                    </a>
 
                 </div>
             </div>
